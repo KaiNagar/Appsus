@@ -7,8 +7,12 @@ export default {
     template: `
     <section ref="compose" class="compose-container">
         <form @submit.prevent="sendEmail">
-            <div class="compose-header">
-                <h3 @click="hideCompose">New Message</h3>
+            <div @click="hideCompose" class="compose-header flex space-between align-center">
+                <h3 >New Message</h3>
+                <div  class="compose-actions flex space-between align-center">
+                    <span class="minimaized">➖</span>
+                    <router-link class="exit-compose" to="/email">✖</router-link>
+                </div>
             </div>
             <div class="compose-form flex column">
             <input required v-model="newEmail.userName" placeholder="Name:" type="text">
@@ -17,7 +21,6 @@ export default {
             <textarea required v-model="newEmail.body" placeholder="Enter message here" cols="30" rows="10"></textarea>
         </div>
         <div class="btns-actions">
-
             <button>Send</button>
         </div>
     </form>
@@ -39,7 +42,8 @@ export default {
                 sentAt: Date.now(),
                 to: null,
             },
-            isShow: true
+            isShow: true,
+            draftInterval:null,
         };
     },
     methods: {
@@ -59,7 +63,10 @@ export default {
     created() {
         emailService.getUser().then(user => {
             this.userEmail = user.email
-        })
+        }),
+        this.draftInterval = setInterval(() => {
+            // console.log(this.newEmail);
+        }, 5000);
     },
     unmounted() { },
 };

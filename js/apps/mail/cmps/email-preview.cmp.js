@@ -4,19 +4,11 @@ export default {
     template: `
         <section @click="readEmail" class="email-preview">
             
-            <td @click="makeImp" :class="checkIfRead" class="starImp">☆</td>
+                <td @click="makeImp" class="starImp">☆</td>
                 <td class="bold">{{email.userName}}</td>
                 <td :class="checkIfRead">{{email.subject}}</td>
                 <td>{{emailBodyShort}}...</td>
                 <td :class="checkIfRead" class="time">{{email.id}}</td>
-            
-            <!-- <div class="email-short-info flex space-between">
-                <p class="bold">{{email.userName}}</p>
-                <p :class="checkIfRead">{{email.subject}}</p>
-                <p>{{emailBodyShort}}...</p>
-                <p @click="makeImp" :class="checkIfRead" class="starImp">☆</p>
-                <p :class="checkIfRead" class="time">{{email.id}}</p>
-            </div> -->
         </section>
     `,
     props: ['email'],

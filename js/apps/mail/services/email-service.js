@@ -10,12 +10,13 @@ export const emailService = {
     setEmails,
     addEmail,
     _setData,
-
+    getDraftsEmails,
 }
 
 
 const INBOX_MAIL_KEY = 'inboxM'
 const SENT_MAIL_KEY = 'sentM'
+const DRAFT_MAIL_KEY = 'draftM'
 const STARRED_MAIL_KEY = 'starredM'
 const USER_KEY = 'userK'
 
@@ -110,6 +111,28 @@ const recivedEmailsData = [
         userName: 'Biton'
     },
 ]
+const draftsEmailsData = [
+    {
+        id: utilService.makeId(),
+        subject: null,
+        body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla exercitationem provident incidunt, iusto, esse fugiat, quidem corrupti expedita reprehenderit beatae autem laudantium maiores voluptas sed libero repudiandae. Voluptatem, sit aliquid?',
+        isRead: false,
+        isStarred: false,
+        sentAt: 1656443107853,
+        from: null,
+        userName: 'Yaron'
+    },
+    {
+        id: utilService.makeId(),
+        subject: null,
+        body: ' iusto, esse fugiat, quidem coantium maiores vndae. Voluptatem, sit aliquid?',
+        isRead: false,
+        isStarred: false,
+        sentAt: 1656443107853,
+        from: null,
+        userName: 'Yaron'
+    },
+]
 
 _setData()
 
@@ -122,16 +145,29 @@ _setData()
 // }
 
 function _setData() {
-    storageService.query(SENT_MAIL_KEY).then(emails=>{
-      if(!emails||!emails.length)  utilService.saveToStorage(SENT_MAIL_KEY, emails)
+    storageService.query(SENT_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(SENT_MAIL_KEY, sentEmailsData)
+        }
     })
-    storageService.query(USER_KEY).then(settings=>{
-        if(!settings||!settings.length)utilService.saveToStorage(USER_KEY, settings)
+    storageService.query(USER_KEY).then(settings => {
+        if (!settings || !settings.length) {
+            utilService.saveToStorage(USER_KEY, loggedInUser)
+        }
     })
-    storageService.query(INBOX_MAIL_KEY).then(emails=>{
-        if(!emails||!emails.length)utilService.saveToStorage(INBOX_MAIL_KEY, emails)
+    storageService.query(INBOX_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(INBOX_MAIL_KEY, recivedEmailsData)
+        }
+    })
+    storageService.query(DRAFT_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(DRAFT_MAIL_KEY, draftsEmailsData)
+        }
     })
 }
+
+
 
 function addEmail(email) {
     storageService.query(SENT_MAIL_KEY).then(emails => {
@@ -154,7 +190,6 @@ function getUser() {
 
 function getInboxEmails() {
     return storageService.query(INBOX_MAIL_KEY)
-
 }
 
 function getSentEmails() {
@@ -162,10 +197,6 @@ function getSentEmails() {
 }
 
 function getsStarredEmails() {
-    // let starMail = storageService.query(STARRED_MAIL_KEY)
-    // if (!starMail || !starMail.length) utilService.saveToStorage(STARRED_MAIL_KEY,starredEmailsData)
-    // return storageService.query(STARRED_MAIL_KEY)
-
     return getInboxEmails().then(emails => {
         let sortedMails = []
         sortedMails.push(...emails.filter(email => email.isStarred === true))
@@ -176,10 +207,14 @@ function getsStarredEmails() {
     })
 }
 
+function getDraftsEmails(){
+    return storageService.query(DRAFT_MAIL_KEY)
+}
+
 function setEmails(filterType) {
     if (filterType === 'inbox') return getInboxEmails()
     if (filterType === 'sent') return getSentEmails()
     if (filterType === 'starred') return getsStarredEmails()
-    if (filterType === 'drafts') return Promise.resolve()
+    if (filterType === 'drafts') return getDraftsEmails()
     if (filterType === 'trash') return Promise.resolve()
 }

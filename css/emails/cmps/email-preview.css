@@ -16,8 +16,13 @@
 
 } */
 
+.email-list {
+    width: 80%;
+}
+
 .email-list table {
     margin: 1rem;
+    width: 90%;
 
 }
 
@@ -75,7 +80,6 @@ input:focus {
     height: 600px;
     padding: 1rem;
     transition: all 0.5s;
-
 }
 
 .compose-container button {
@@ -99,7 +103,7 @@ input:focus {
     border-top: 1px solid rgba(128, 128, 128, 0.25);
 }
 
-.compose-container input:nth-child(2){
+.compose-container input:nth-child(2) {
     border: 0;
 }
 
@@ -110,22 +114,55 @@ input:focus {
 }
 
 .compose-container h3 {
-    background-color: rgb(71, 70, 70);
     color: var(--clr-white);
     font-weight: 400;
     padding: 0.3rem;
     font-size: 1.1rem;
-    border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem;
     margin-bottom: 0px;
     margin-top: 0;
 }
 
-.compose-container h3:hover{
+
+.compose-header {
+    background-color: rgb(71, 70, 70);
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+
+.compose-header:hover {
     cursor: pointer;
 }
 
+.compose-header .exit-compose {
+    text-decoration: none;
+    color: whitesmoke;
+    margin-inline-end: 0.5rem;
+    width: 20px;
+    text-align: center;
+}
+
+.compose-header .exit-compose:hover {
+    cursor: pointer;
+    background-color: rgba(178, 190, 190, 0.40);
+}
+
+.minimaized:hover {
+    cursor: pointer;
+    background-color: rgba(178, 190, 190, 0.25);
+}
+
+
+.compose-actions {
+    width: 8%;
+    z-index: 100;
+}
+
+
+
+
+
 .compose-container form {
+    background-color: white;
     border: 1px solid rgba(128, 128, 128, 0.25);
     border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
