@@ -12,9 +12,11 @@ export default {
     <component :is="note.type"
             :info="note.info">
         </component>
-        <note-actions @remove-note="removeNote" :note="note"/>
+        <note-actions @remove="removeNote" :note="note"/>
     </article>
 `,
+    name: 'note-preview'
+    ,
     data() {
         return {}
     },

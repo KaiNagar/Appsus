@@ -4,10 +4,11 @@ import notePreview from './note-preview.cmp.js'
 export default {
     props: ['notes'],
     template: `
-    <div v-for="(note,idx) in notes" :key="note.id">
+    <div class="note-container" v-for="(note,idx) in notes" :key="note.id">
       <note-preview @remove="removeNote" :note="note"/>
     </div>
 `,
+    name: 'note-list!',
     data() {
         return {
         }
@@ -21,7 +22,7 @@ export default {
 
     methods: {
         removeNote() {
-            this.$emit('removed', this.notes)
+            this.$emit('remove', this.notes)
         }
     },
 

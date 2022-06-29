@@ -4,13 +4,14 @@ import { noteService } from "../services/note-service.js"
 export default {
     template: `
     <section class="note-list">
-         <note-list v-if="notes" @removed="removeNote(idx)" :notes="notes" />
+         <note-list v-if="notes" @remove="removeNote(idx)" :notes="notes" />
         
         </section>
 `,
     components: {
         noteList,
     },
+    name: 'note-app!',
     data() {
         return {
             notes: null

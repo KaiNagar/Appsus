@@ -53,9 +53,18 @@ function getNote() {
         },
         {
             id: "n102",
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                title: "",
+                txt: "Fullstack Me Baby!"
+            }
+        },
+        {
+            id: "n103",
             type: "note-img",
             info: {
-                url: "http://some-img/me",
+                url: "",
                 title: "Bobi and Me"
             },
             style: {
@@ -63,7 +72,7 @@ function getNote() {
             }
         },
         {
-            id: "n103",
+            id: "n104",
             type: "note-todos",
             info: {
                 title: "Get my stuff together",
