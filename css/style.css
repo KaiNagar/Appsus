@@ -13,6 +13,9 @@
 @import './books/views/book-details.css';
 @import './books/views/book-filter.css';
 
+@import './emails/cmps/email-preview.css';
+@import './emails/cmps/email-side-filter.css';
+
 @import './components/app-footer.css';
 @import './components//user-msg.css';
 
@@ -26,4 +29,14 @@
     --clr-white: #fff;
     --clr-Black: #000;
 }
+
+
+
+
+
+
+
+
+
+
 

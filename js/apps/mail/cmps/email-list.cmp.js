@@ -5,12 +5,19 @@ export default {
     props: ['emails'],
     template: `
     <section class="email-list">
-        <ul>
-            <li v-for="email in emails" :key="email.id" class="email-preview-container">
-                <email-preview :email="email" @open="select(email.id)"/>
+        <table>
+            <tbody>
+                <tr v-for="email in emails" :key="email.id" class="email-preview-container">
+                    
+                    <email-preview :email="email" @open="select(email.id)"/>
+                </tr>
+
+            </tbody>
+        </table>
+            <!-- <li v-for="email in emails" :key="email.id" class="email-preview-container">
 
             </li>
-        </ul>
+        </ul> -->
     </section>
  `,
     components: {
@@ -29,6 +36,11 @@ export default {
     computed: {
 
     },
-    created() { },
+    created() {
+        console.log(this.emails);
+        setTimeout(() => {
+            
+        }, 1000);
+     },
     unmounted() { },
 };

@@ -6,15 +6,16 @@ import sideFilter from "../cmps/email-side-filter.cmp.js"
 
 export default {
     template: `
-    <section class="emails-app">
+    <section v-if="emails" class="emails-app">
         <h1>this is the main email app</h1>
 
         <top-filter @filtered="setFilter"/>
 
-        <div class="main-email-container flex">
+        <div class="main-email-container flex space-between">
             <side-filter @emailType="setType"/>
             <email-list :emails="emailsToDisplay"/>
         </div>
+        <router-view></router-view>
         
     </section>
     `,
@@ -28,7 +29,7 @@ export default {
         return {
             emails: null,
             filterBy: null,
-            sideFilter: 'sent',
+            sideFilter: 'inbox',
         };
     },
     methods: {
@@ -36,21 +37,23 @@ export default {
             this.filterBy = filterBy
         },
         setType(type) {
-            console.log(type);
-            this.sideFilter = type
+            emailService.setEmails(type).then(emails=> this.emails = emails)
         }
     },
     computed: {
         emailsToDisplay() {
-            this.emails = emailService.setEmails(this.sideFilter)
-            if (!this.filterBy) return this.emails
+            if (!this.filterBy) {
+                return this.emails}
             const regex = new RegExp(this.filterBy.txt, 'i')
-            return this.emails.filter((email) => regex.test(email.to) || regex.test(email.body) || regex.test(email.subject))
+            return this.emails.filter((email) => regex.test(email.to) ||
+                regex.test(email.body) || regex.test(email.subject) ||
+                regex.test(email.from) || regex.test(email.id))
         }
     },
     created() {
-        this.emails = emailService.setEmails(this.sideFilter)
-        console.log(this.emails);
+        emailService.setEmails(this.sideFilter).then(emails => {
+            this.emails = emails
+        })
     },
-    unmounted() { },
+    unmounted() {},
 };
