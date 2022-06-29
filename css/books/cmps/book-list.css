@@ -1,22 +1,15 @@
 .books-list ul {
-    margin: 1rem;
-    padding: 1rem;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    row-gap: 1rem;
-    border-radius: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-items: center;
+    text-align: center;
+    gap: 0.3em;
 }
 
-/* .books-list button {
-    background-color: rgb(162, 70, 247);
-    border: 0;
-    border-radius: 1rem;
-    padding: 10px 20px;
-} */
-
-/* .books-list button:hover {
-     background-color: rgb(216, 186, 244); 
-    cursor: pointer;
-} */
+.books-list,
+.book-search {
+    background-color: rgba(245, 244, 244, 0.982);
+    border-radius: 1em;
+    margin: 1em;
+}

@@ -1,9 +1,13 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
+}
+
+html {
+    font-family: sans-serif;
 }
 
 /* price colors */
@@ -14,5 +18,3 @@ body{
 .green {
     color: rgb(35, 171, 35);
 }
-
-

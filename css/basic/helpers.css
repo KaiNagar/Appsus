@@ -5,9 +5,11 @@
 .flex.align-center {
     align-items: center;
 }
+
 .flex.align-right {
     align-items: flex-end;
 }
+
 .flex.align-left {
     align-items: flex-start;
 }
@@ -15,9 +17,11 @@
 .flex.space-between {
     justify-content: space-between;
 }
+
 .flex.space-around {
     justify-content: space-around;
 }
+
 .flex.space-evenly {
     justify-content: space-evenly;
 }
@@ -40,11 +44,18 @@
     color: green;
 }
 
-.margin-auto{
+.margin-auto {
     margin: auto;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}

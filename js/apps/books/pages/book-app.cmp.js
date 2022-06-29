@@ -9,8 +9,10 @@ export default {
     template: `
         <section class="book-app-container" v-if="books">
             <book-filter @filtered="setFilter" :max="maxPrice"/>
-            <book-add  @addNewBook="addNewBook"/>
-            <book-list :books="booksToDisplay" />
+            <section class="book-search">
+                <book-add  @addNewBook="addNewBook"/>
+                <book-list :books="booksToDisplay" />
+            </section>
         </section>
     `,
     components: {
@@ -59,5 +61,5 @@ export default {
     created() {
         bookService.query().then(books => this.books = books)
     },
-    unmounted() {}
+    unmounted() { }
 }
