@@ -7,6 +7,7 @@ export default {
                 <p>{{userName}}</p>
                 <p>{{email.subject}}</p>
                 <p>{{emailBodyShort}}...</p>
+                <p>{{email.id}}</p>
             </div>
             <!-- <button>open</button> -->
         </section>
