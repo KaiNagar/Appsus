@@ -1,0 +1,34 @@
+.add-book-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.add-book-preview button {
+    margin-left: 2rem;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+.add-book-preview button:hover {
+    background-color: rgba(250, 235, 215, 0.383);
+    cursor: pointer;
+}
+
+.add-book-preview .search {
+    border-radius: 2rem;
+    background-color: rgb(176, 20, 215);
+}
+
+.add-book-preview .search:hover {
+    background-color: rgb(204, 160, 215);
+}
+
+.add-book-preview input {
+    padding: 1rem;
+    font-size: 1.2rem;
+    background-image: linear-gradient(to bottom right, rgb(32, 32, 227), rgb(44, 153, 216), rgb(95, 54, 219));
+    border-radius: 1rem;
+}

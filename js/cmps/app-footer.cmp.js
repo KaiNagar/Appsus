@@ -1,6 +1,6 @@
 export default {
    template: `
-      <section class="main-footer">
+      <section class="app-footer">
          <h3>&copy;{{msg}}</h3>
       </section>
    `,

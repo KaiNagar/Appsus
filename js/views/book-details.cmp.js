@@ -5,7 +5,7 @@ import reviewForm from "../cmps/review-form.cmp.js"
 
 export default {
     template: `
-        <section v-if="book" class="book-details main-height">
+        <section v-if="book" class="book-details-container main-height">
             <review-form :book="book" @addReview="addReview" />
             <div class="book-info">
                 <p>Title: {{title}}</p>

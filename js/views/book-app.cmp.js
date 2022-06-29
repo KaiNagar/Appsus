@@ -7,7 +7,7 @@ import bookAdd from "../cmps/book-add.cmp.js"
 
 export default {
     template: `
-        <section v-if="books">
+        <section class="book-app-container" v-if="books">
             <book-filter @filtered="setFilter" :max="maxPrice"/>
             <book-add  @addNewBook="addNewBook"/>
             <book-list :books="booksToDisplay" />

@@ -1,0 +1,22 @@
+.home-page {
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 19px;
+}
+
+.home-page .router-link {
+    text-decoration: none;
+    color: blue;
+    font-size: 1.2rem;
+}
+
+.home-page img {
+    height: 630;
+    width: 1200px;
+    border-radius: 1rem;
+    border: 4px solid black;
+}

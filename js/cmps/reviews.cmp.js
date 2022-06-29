@@ -2,7 +2,7 @@ import { bookService } from "../services/book-service.js"
 
 export default {
     template: `
-        <section v-if="book" class="reviews-data">
+        <section v-if="book" class="reviews-list">
             <h2>Reviews: </h2>
             <ol>
                 <li v-for="(review,idx) in book.reviews" :key="idx">

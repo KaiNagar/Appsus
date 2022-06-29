@@ -1,6 +1,6 @@
 export default {
     template: `
-        <section class="main-about main-height">
+        <section class="about-page main-height">
             <h1>My name is Izuku Midoriya </h1>
             <h3>And this is the beginning of my story:</h3>
             <img src="https://static.tvtropes.org/pmwiki/pub/images/izuku_midoriya_s4.png" alt="">

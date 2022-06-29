@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+/* price colors */
+.red {
+    color: red;
+}
+
+.green {
+    color: rgb(35, 171, 35);
+}
+
+

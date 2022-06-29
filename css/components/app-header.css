@@ -1,0 +1,15 @@
+.main-header img {
+    height: 8vh;
+    padding: 10px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+}
+
+.main-header .nav-bar>* {
+    margin: 10px;
+}

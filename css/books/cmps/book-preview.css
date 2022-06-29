@@ -1,0 +1,35 @@
+.book-preview-container {
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    border: 3px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 10px grey;
+}
+
+.book-preview-container a:-webkit-any-link {
+text-decoration: none;
+background-color: rgb(42, 112, 235);
+border-radius: 1rem;
+padding: 5px 10px;
+color: rgb(217, 218, 248);
+}
+
+.book-preview-container a:-webkit-any-link:hover {
+    background-color: rgb(162, 185, 225);
+}
+
+
+/* book preview */
+.book-preview {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.book-preview img {
+    width: 200px;
+}
