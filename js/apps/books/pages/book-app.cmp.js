@@ -1,4 +1,4 @@
-import { bookService } from "../../../services/book-service.js"
+import { bookService } from "../services/book-service.js"
 import bookList from "../cmps/book-list.cmp.js"
 import bookFilter from "./book-filter.cmp.js"
 import bookAdd from "../cmps/book-add.cmp.js"
