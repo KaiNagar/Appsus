@@ -9,6 +9,9 @@
 @import './books/cmps/book-add.css';
 
 
+@import './notes/note-txt.css';
+
+
 @import './books/views/book-app.css';
 @import './books/views/book-details.css';
 @import './books/views/book-filter.css';
@@ -26,4 +29,3 @@
     --clr-white: #fff;
     --clr-Black: #000;
 }
-
