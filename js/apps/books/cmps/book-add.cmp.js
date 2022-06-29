@@ -4,9 +4,12 @@ export default {
     template: `
         <section class="add-book-preview">
             <form @submit.prevent="showBooks">
-                <label for="book-add">Add a book: </label>
-                <input v-model="value" id="book-add" list="new-books"  type="search" placeholder="Enter book name">
-                <button class="search">Search</button>
+                <h3 @click="showInput">+ Add New Book</h3>
+                <div v-if="isInput" class="search">
+                    <input class="book-add-input " v-model="value" id="book-add" list="new-books"  type="search"
+                     placeholder="Search & Add New Book">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
             </form>
             <div v-if="newBooksList" class="new-books">
                 <ul>
@@ -18,15 +21,19 @@ export default {
             </div>
         </section>
     `,
-    
+
     data() {
         return {
             value: null,
             newBooksList: null,
+            isInput: false
         }
     },
 
     methods: {
+        showInput() {
+            this.isInput = !this.isInput
+        },
         showBooks() {
             bookService.getNewBooksList(this.value)
                 .then(newBooksList => {
@@ -38,6 +45,7 @@ export default {
             this.newBooksList = null
             this.value = null
         },
+
     },
 }
 

@@ -1,9 +1,9 @@
 export default {
     template: `
         <article class="book-preview">
-            <p>{{title}}</p>
-            <img @click="$emit('open',book.id)" :src="book.thumbnail" alt="Book Cover Image">
-            <p>Price: <span :class="priceRange">{{price}}</span></p>
+            <img :src="book.thumbnail" alt="Book Cover Image">
+            <p class="book-title">{{title}}</p>
+            <p class="book-price"><span :class="priceRange">{{price}}</span></p>
         </article>
     `,
     props: ["book"],

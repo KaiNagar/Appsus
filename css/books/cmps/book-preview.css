@@ -1,35 +1,44 @@
 .book-preview-container {
-    padding: 10px;
-    margin: 10px;
-    width: 300px;
-    border: 3px solid grey;
+    padding: 0.7em;
+    margin: 0.6em;
+    border: 1px solid #182c3d61;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 10px grey;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 2px 1px #28434c99;
+}
+
+.book-price {
+    color: rgb(116, 116, 123);
+    font-size: 0.8em;
 }
 
 .book-preview-container a:-webkit-any-link {
-text-decoration: none;
-background-color: rgb(42, 112, 235);
-border-radius: 1rem;
-padding: 5px 10px;
-color: rgb(217, 218, 248);
+    text-decoration: none;
+    padding: 5px;
+    color: rgb(92, 92, 100);
+    font-weight: bold;
+    font-size: 1.1em;
+
 }
 
 .book-preview-container a:-webkit-any-link:hover {
-    background-color: rgb(162, 185, 225);
+    color: rgb(33, 33, 82);
 }
 
 
 /* book preview */
 .book-preview {
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.book-title {
+    color: rgb(12, 12, 12);
+    margin: 0.3em;
 }
 
 .book-preview img {
-    width: 200px;
+    width: 50%;
+    margin: 0.5em;
 }

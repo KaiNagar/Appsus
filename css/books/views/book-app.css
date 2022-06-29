@@ -1,3 +1,4 @@
-.book-app-container{
-    background-color:rgb(255, 255, 255) ;
+.book-app-container {
+    height: 100%;
+    background: linear-gradient(0.25turn, #183044, #3c76b9, #293993e6);
 }

@@ -2,33 +2,45 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     padding: 1rem;
 }
 
-.add-book-preview button {
-    margin-left: 2rem;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: 1.5rem;
-}
-
-.add-book-preview button:hover {
-    background-color: rgba(250, 235, 215, 0.383);
+.add-book-preview h3 {
+    color: rgb(108, 107, 107);
+    margin: 0.5em;
+    font-size: 1.5em;
+    font-weight: lighter;
     cursor: pointer;
 }
 
-.add-book-preview .search {
+.add-book-preview h3:hover {
+    color: rgb(75, 74, 74);
+}
+
+.search button {
+    position: absolute;
+    right: 0.6em;
+    top: 21%;
+    background-color: transparent;
+    border: transparent;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: rgb(66, 66, 112);
+}
+
+.search button :hover {
+    color: rgb(135, 135, 237);
+}
+
+.search {
+    position: relative;
+    align-items: center;
+}
+
+.search input {
     border-radius: 2rem;
-    background-color: rgb(176, 20, 215);
-}
-
-.add-book-preview .search:hover {
-    background-color: rgb(204, 160, 215);
-}
-
-.add-book-preview input {
-    padding: 1rem;
-    font-size: 1.2rem;
-    background-image: linear-gradient(to bottom right, rgb(32, 32, 227), rgb(44, 153, 216), rgb(95, 54, 219));
-    border-radius: 1rem;
+    width: 60em;
+    padding: 1.2em;
+    border: transparent;
 }

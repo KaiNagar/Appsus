@@ -7,9 +7,7 @@ export default {
             <ul>
                 <li v-for="book in books" :key="book.id" class="book-preview-container">
                     <book-preview :book="book" @open="select(book.id)" />
-                    <div class="actions">
-                        <router-link :to="'/book/'+book.id">More</router-link>
-                    </div>
+                    <router-link :to="'/book/'+book.id">More</router-link>
                 </li>
             </ul>
         </section>
@@ -22,6 +20,6 @@ export default {
             this.$emit("selected", bookId)
         }
     },
-    created() {}
+    created() { }
 
 }
