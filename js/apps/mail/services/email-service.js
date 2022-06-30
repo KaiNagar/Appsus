@@ -3,21 +3,21 @@ import { utilService } from "../../../services/util-service.js"
 
 export const emailService = {
     getUser,
-    getInboxEmails,
-    getSentEmails,
     getsStarredEmails,
     updateEmail,
     setEmails,
     addEmail,
-    _setData,
     getDraftsEmails,
+    saveEmailDraft,
+    removeEmail,
+    formattedTime,
 }
 
 
 const INBOX_MAIL_KEY = 'inboxM'
 const SENT_MAIL_KEY = 'sentM'
 const DRAFT_MAIL_KEY = 'draftM'
-const STARRED_MAIL_KEY = 'starredM'
+const DELETED_MAIL_KEY = 'delM'
 const USER_KEY = 'userK'
 
 
@@ -76,7 +76,7 @@ const recivedEmailsData = [
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla exercitationem provident incidunt, iusto, esse fugiat, quidem corrupti expedita reprehenderit beatae autem laudantium maiores voluptas sed libero repudiandae. Voluptatem, sit aliquid?',
         isRead: false,
         isStarred: false,
-        sentAt: 1656443147853,
+        sentAt: 1656443145853,
         from: 'yaronBoton@ca.com',
         userName: 'Yaron'
     },
@@ -86,7 +86,7 @@ const recivedEmailsData = [
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla exercitationem provident incidunt, iusto, esse fugiat, quidem corrupti expedita reprehenderit beatae autem laudantium maiores voluptas sed libero repudiandae. Voluptatem, sit aliquid?',
         isRead: false,
         isStarred: true,
-        sentAt: 1656443147853,
+        sentAt: 1656443137853,
         from: 'yaronBoton@ca.com',
         userName: 'Yaron'
     },
@@ -96,7 +96,7 @@ const recivedEmailsData = [
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla exercitationem provident incidunt, iusto, esse fugiat, quidem corrupti expedita reprehenderit beatae autem laudantium maiores voluptas sed libero repudiandae. Voluptatem, sit aliquid?',
         isRead: false,
         isStarred: false,
-        sentAt: 1656443147853,
+        sentAt: 1656442147853,
         from: 'yaronBoton@ca.com',
         userName: 'Biton'
     },
@@ -106,11 +106,12 @@ const recivedEmailsData = [
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla exercitationem provident incidunt, iusto, esse fugiat, quidem corrupti expedita reprehenderit beatae autem laudantium maiores voluptas sed libero repudiandae. Voluptatem, sit aliquid?',
         isRead: false,
         isStarred: true,
-        sentAt: 1656443147853,
+        sentAt: 1656443077853,
         from: 'yaronBoton@ca.com',
         userName: 'Biton'
     },
 ]
+
 const draftsEmailsData = [
     {
         id: utilService.makeId(),
@@ -134,16 +135,28 @@ const draftsEmailsData = [
     },
 ]
 
+const deletedEmailsData = [
+    {
+        id: utilService.makeId(),
+        subject: 'We love ng!!',
+        body: 'Lorem t incidunt, iu',
+        isStarred: false,
+        sentAt: 1656443147853,
+        from: 'yaronon@ca.com',
+        userName: 'Yaron'
+    },
+    {
+        id: utilService.makeId(),
+        subject: 'e love ng!!',
+        body: 'L t incidunt, iu',
+        isStarred: false,
+        sentAt: 1656443147853,
+        from: 'yaroon@ca.com',
+        userName: 'Yaon'
+    },
+]
+
 _setData()
-
-// const starredEmailsData = []
-// _setStarredEmailsData()
-
-// function _setStarredEmailsData() {
-//     starredEmailsData.push(...sentEmailsData.filter(email => email.isStarred === true))
-//     starredEmailsData.push(...recivedEmailsData.filter(email => email.isStarred === true))
-// }
-
 function _setData() {
     storageService.query(SENT_MAIL_KEY).then(emails => {
         if (!emails || !emails.length) {
@@ -165,6 +178,17 @@ function _setData() {
             utilService.saveToStorage(DRAFT_MAIL_KEY, draftsEmailsData)
         }
     })
+    storageService.query(DELETED_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(DELETED_MAIL_KEY, deletedEmailsData)
+        }
+    })
+}
+
+function formattedTime(timeStamp) {
+    let now = Date.now()
+    let diff = now - timeStamp
+
 }
 
 
@@ -173,7 +197,24 @@ function addEmail(email) {
     storageService.query(SENT_MAIL_KEY).then(emails => {
         emails.unshift(email)
         utilService.saveToStorage(SENT_MAIL_KEY, emails)
-        console.log(emails);
+    })
+}
+
+function removeEmail(emailType, delEmail) {
+    let key
+    if (emailType === 'sent') key = SENT_MAIL_KEY
+    else key = INBOX_MAIL_KEY
+    storageService.query(DELETED_MAIL_KEY).then(emails => {
+        if (emails.some(email => email.id === delEmail.id)) {
+            console.log(delEmail.id);
+            console.log('in');
+            storageService.remove(DELETED_MAIL_KEY, delEmail.id).then(res => console.log(res))
+        } else {
+            console.log('afad');
+            emails.unshift(delEmail)
+            utilService.saveToStorage(DELETED_MAIL_KEY, emails)
+            storageService.remove(key, delEmail.id)
+        }
     })
 }
 
@@ -207,8 +248,21 @@ function getsStarredEmails() {
     })
 }
 
-function getDraftsEmails(){
+function getDraftsEmails() {
     return storageService.query(DRAFT_MAIL_KEY)
+}
+
+function getDeletedEmails() {
+    return storageService.query(DELETED_MAIL_KEY)
+}
+
+function saveEmailDraft(newEmail) {
+    storageService.query(DRAFT_MAIL_KEY).then(emails => {
+        if (emails.some(email => email.id === newEmail.id)) {
+            console.log(newEmail);
+            storageService.put(DRAFT_MAIL_KEY, newEmail)
+        } else storageService.post(DRAFT_MAIL_KEY, newEmail)
+    })
 }
 
 function setEmails(filterType) {
@@ -216,5 +270,5 @@ function setEmails(filterType) {
     if (filterType === 'sent') return getSentEmails()
     if (filterType === 'starred') return getsStarredEmails()
     if (filterType === 'drafts') return getDraftsEmails()
-    if (filterType === 'trash') return Promise.resolve()
+    if (filterType === 'trash') return getDeletedEmails()
 }

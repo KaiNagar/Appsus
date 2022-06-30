@@ -1,4 +1,3 @@
-import { emailService } from "../services/email-service.js";
 import emailPreview from "./email-preview.cmp.js";
 
 export default {
@@ -8,16 +7,10 @@ export default {
         <table>
             <tbody>
                 <tr v-for="email in emails" :key="email.id" class="email-preview-container">
-                    
-                    <email-preview :email="email" @open="select(email.id)"/>
+                    <email-preview @delId="delEmail" @click="expand=!expand" :email="email" @open="select(email.id)"/>
                 </tr>
-
             </tbody>
         </table>
-            <!-- <li v-for="email in emails" :key="email.id" class="email-preview-container">
-
-            </li>
-        </ul> -->
     </section>
  `,
     components: {
@@ -25,12 +18,20 @@ export default {
     },
     data() {
         return {
-            longBody: false
+            longBody: false,
         };
     },
     methods: {
-        select(emailId){
-            this.$emit('selected',emailId)
+        select(emailId) {
+            console.log(emailId);
+            this.$emit('selected', emailId)
+        },
+        expandPreview() {
+            console.log('yo');
+        },
+        delEmail(emailId) {
+            const idx = this.emails.findIndex(email => email.id === emailId)
+            this.emails.splice(idx, 1)
         }
     },
     computed: {
@@ -39,8 +40,8 @@ export default {
     created() {
         console.log(this.emails);
         setTimeout(() => {
-            
+
         }, 1000);
-     },
+    },
     unmounted() { },
 };

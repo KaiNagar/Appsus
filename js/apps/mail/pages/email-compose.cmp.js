@@ -11,7 +11,7 @@ export default {
                 <h3 >New Message</h3>
                 <div  class="compose-actions flex space-between align-center">
                     <span class="minimaized">➖</span>
-                    <router-link class="exit-compose" to="/email">✖</router-link>
+                    <router-link class="exit-compose" to="/email" @click="exitCompose">✖</router-link>
                 </div>
             </div>
             <div class="compose-form flex column">
@@ -24,8 +24,6 @@ export default {
             <button>Send</button>
         </div>
     </form>
-    <!-- <router-link to="/email" >Back</router-link> -->
-    <!-- <router-link to="'/email'">Back<router-link> -->
     </section>
     `,
     components: {},
@@ -43,7 +41,8 @@ export default {
                 to: null,
             },
             isShow: true,
-            draftInterval:null,
+            draftInterval: null,
+            isX: false,
         };
     },
     methods: {
@@ -51,12 +50,18 @@ export default {
             console.log(this.newEmail);
             emailService.addEmail(this.newEmail)
             router.push('/email')
+            clearInterval(this.draftInterval)
         },
         hideCompose() {
+            if (this.isX) return
             this.isShow = !this.isShow
             let compose = this.$refs.compose
             if (!this.isShow) compose.style.bottom = '-550px'
             else compose.style.bottom = '1rem'
+        },
+        exitCompose() {
+            this.isX = true
+            clearInterval(this.draftInterval)
         }
     },
     computed: {},
@@ -64,9 +69,10 @@ export default {
         emailService.getUser().then(user => {
             this.userEmail = user.email
         }),
-        this.draftInterval = setInterval(() => {
-            // console.log(this.newEmail);
-        }, 5000);
+            this.draftInterval = setInterval(() => {
+                console.log('count');
+                emailService.saveEmailDraft(this.newEmail)
+            }, 5000);
     },
     unmounted() { },
 };

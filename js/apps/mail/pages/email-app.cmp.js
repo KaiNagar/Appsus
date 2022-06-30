@@ -11,7 +11,7 @@ export default {
 
         <top-filter @filtered="setFilter"/>
 
-        <div class="main-email-container flex space-between">
+        <div class="main-email-container flex">
             <side-filter @emailType="setType"/>
             <email-list :emails="emailsToDisplay"/>
         </div>
