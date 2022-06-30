@@ -2,8 +2,12 @@ export default {
     props: [],
     template: `
         <section class="email-top-filter text-center">
-            <label for="email-search">search for email</label>
-            <input @input="filter" v-model="filterBy.txt"  id="email-search" type="text">
+            <input @input="filter" v-model="filterBy.txt"  id="email-search" type="text" placeholder="Search in Kmail">
+            <!-- <select @input="filter"  v-model="filterBy.status" name="" id="">
+                <option value="all">All</option>
+                <option value="read">Read</option>
+                <option value="unread">Un Read</option>
+            </select> -->
         </section>
     `,
     components: {},
@@ -11,12 +15,13 @@ export default {
         return {
             filterBy:{
               txt:'',
-              date:0,
+              status:'all',
             }
         };
     },
     methods: {
         filter(){
+            console.log(this.filterBy);
             this.$emit('filtered',{...this.filterBy})
         }
     },

@@ -27,7 +27,7 @@ export default {
         noteVideo
     },
     created() {
-        console.log(this.note);
+        // console.log(this.note);
      },
     methods: {
         removeNote(delNote) {

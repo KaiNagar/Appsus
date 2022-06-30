@@ -7,7 +7,7 @@
 .add-compose-action {
     display: flex;
     align-items: center;
-    background-color: grey;
+    background-color: white;
     color: black;
     border-radius: 2rem;
     padding: 0.2rem 0.5rem;
@@ -17,7 +17,7 @@
 
 .add-compose-action:hover {
     cursor: pointer;
-    background-color: rgb(242, 233, 233);
+    background-color: rgba(255, 255, 255, 0.605)
 }
 
 .add-compose-action .plus {
@@ -34,25 +34,55 @@
 .tab {
     display: flex;
     align-items: center;
-    margin:0;
+    margin: 0;
     padding-inline-start: 1rem;
     font-size: 1.3rem;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
-    padding: 0.6rem
+    padding: 0.6rem;
+    color: white;
 }
 
 .tab:hover {
-    background-color: rgb(225, 226, 232);
+    background-color: rgba(221, 222, 233, 0.414);
     cursor: pointer;
 }
 
-.active-tab{
-    background-color: rgb(197, 198, 213);
+.active-tab {
+    background-color: rgba(221, 222, 233, 0.414);
 }
 
 .icon {
     width: 20px;
     margin-inline-end: 1rem;
     margin-inline-start: 2rem;
+}
+
+
+
+/* top filter */
+.email-top-filter{
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.email-top-filter input {
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.206);
+    font-size: 1.3rem;
+    width: 95%;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    transition: all 0.5s;
+}
+
+.email-top-filter input:focus {
+    outline: none;
+    background-color: white;
+}
+
+.main-email-container {
+    width: 100%;
 }
