@@ -4,7 +4,7 @@ import { noteService } from "../services/note-service.js"
 export default {
     template: `
     <section class="note-app">
-         <note-list v-if="notes" @remove="removeNote(idx)" :notes="notes" />
+         <note-list v-if="notes" @remove="removeNote" :notes="notes" />
         
         </section>
 `,
@@ -23,15 +23,20 @@ export default {
     },
     methods: {
         getNotes() {
-            keepService.query().then(notes => {
-                this.notes = notes
-                console.log(this.notes)
-            })
+            keepService.query()
+                .then(notes => {
+                    this.notes = notes
+                    console.log(this.notes)
+                })
         },
 
-        removeNote(idx) {
+        removeNote(delNote) {
+            console.log(note)
+            const idx = this.notes.findIdx(note => {
+                note.id === delNote.id
+            })
             this.notes.splice(idx, 1)
-            noteService.removeNote(this.notes, idx)
+            noteService.removeNote(delNote.id)
         }
     },
     computed: {},

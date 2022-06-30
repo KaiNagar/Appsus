@@ -23,8 +23,8 @@ export default {
     created() { },
 
     methods: {
-        removeNote() {
-            this.$emit('remove', this.notes)
+        removeNote(delNote) {
+            this.$emit('remove', delNote)
         }
     },
 
