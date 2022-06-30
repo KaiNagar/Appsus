@@ -1,30 +1,32 @@
 export default {
     // props[]
     template: `
- <section class="colors">
-    <div v-for="color in colors" 
-    :style="{ backgroundColor: color }"
-    @click="changeBgColor(color)">
-</div>
- </section>
+
+        <section class="color-palette">
+            <div v-for="color in colors" 
+            :style="{ backgroundColor: color }"
+            @click="changeBgColor(color)"
+            ></div>
+        </section>
 `,
     data() {
         return {
             colors: [
-                '#FF1493',
                 '#9400D3',
-                '#D8BFD8',
+                '#d0aaaa',
                 '#008080',
-                '#000008B',
+                '#c96946',
                 '#A9A9A9',
+                '#ffa5a5',
+                '#fff',
+                '#f29164',
             ]
         };
     },
     created() { },
     methods: {
         changeBgColor(color) {
-            console.log(color);
-            this.$emit('color', color)
+            this.$emit('bg-color', color)
         }
     },
     computed: {},

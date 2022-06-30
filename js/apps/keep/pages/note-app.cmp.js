@@ -1,39 +1,63 @@
 import noteList from "../cmps/note-list.cmp.js"
+import addNote from "../cmps/add-note.cmp.js"
 import { noteService } from "../services/note-service.js"
 
 export default {
     template: `
-    <section v-if="notes" class="note-app">
-         <note-list v-if="notes" @delNoteId="removeNote" :notes="notes" />
-        
-        </section>
+    <main class="main flex">
+        <section class="note-app">
+            <add-note v-if="notes" />
+             <note-list v-if="notes"
+             :notes="notes" 
+              @removeNote="removeNote"
+              @changeBgColor="changeBgColor"
+              @pinnedNote="pinnedNote"
+               />
+            </section>
+    </main>
 `,
     components: {
         noteList,
+        addNote
     },
     name: 'note-app!',
     data() {
         return {
-            notes: null
+            notes: null,
+
         }
     },
     created() {
-        noteService.query()
-            .then(notes => this.notes = notes)
+        this.loadNotes()
     },
     methods: {
-        // getNotes() {
-        //     noteService.query()
-        //         .then(notes => {
-        //             this.notes = notes
-        //             console.log(this.notes)
-        //         })
-        // },
+        loadNotes() {
+            noteService.query()
+                .then(notes => this.notes = notes)
+        },
 
         removeNote(noteId) {
-            const idx = this.notes.findIndex(note => note.id === noteId)
-            this.notes.splice(idx, 1)
             noteService.removeNote(noteId)
+                .then(this.loadNotes)
+        },
+
+        changeBgColor({ color, noteId }) {
+            noteService.changeNoteBgc(color, noteId)
+                .then(this.loadNotes)
+        },
+
+        pinnedNote(pinnedNote) {
+            console.log('note is pinned? ', pinnedNote)
+            const idx = this.notes.findIndex(note => note.id === pinnedNote.id)
+            pinnedNote.lastPos = idx
+            if (!pinnedNote.isPinned) {
+                console.log('no pinnn', idx, 'notes after: ', this.notes)
+                this.notes.splice(idx, 1, pinnedNote)
+            } else {
+                console.log('yes pinnn')
+                this.notes.splice(idx, 1)
+                this.notes.unshift(pinnedNote)
+            }
         }
     },
     computed: {},

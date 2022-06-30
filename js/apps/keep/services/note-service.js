@@ -3,7 +3,7 @@ import { utilService } from "../../../services/util-service.js"
 import { storageService } from "../../../services/async-storage-service.js"
 
 
-// "url": "https://source.unsplash.com/random/200x200?sig=5",
+
 const NOTE_KEY = 'noteDB'
 _createNotes()
 
@@ -14,6 +14,7 @@ export const noteService = {
     changeNoteBgc,
     save,
     addNote,
+    changeNotePos
 
 }
 
@@ -52,9 +53,19 @@ function removeNote(noteId) {
         })
 }
 
-function changeNoteBgc({ color, noteId }) {
+function changeNotePos(pinNoteId) {
+    query()
+        .then(notes => {
+            notes.unshift(pinNoteId)
+            utilService.saveToStorage(NOTE_KEY, notes)
+        })
+}
+
+
+function changeNoteBgc(color, noteId) {
     return get(noteId)
         .then(note => {
+            console.log({ note, noteId });
             note.style.backgroundColor = color
             return save(note)
         })

@@ -1,8 +1,8 @@
 export default {
     props: ['info'],
     template: `
-    <section class="txt-note">
-         <h4 v-if="info.title">{{ info.title }}</h4>
+    <section class="note-body">
+        <h3>{{info.title}}</h3>
           <p v-if="info.txt">{{ info.txt }}</p>
     </section>
 

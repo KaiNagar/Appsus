@@ -2,9 +2,8 @@ export default {
     props: ['info'],
 
     template: `
-    <section class="note-img" >
-        <img :src="info.url" />
-        <h4>{{ info.title }}</h4>
+    <section>
+        <!-- <img :src="info.url" /> -->
     </section>
 `,
     data() {
@@ -17,9 +16,6 @@ export default {
 
     },
     computed: {
-        imgUrl() {
-            return './imgs/note-dog.avif'
-        },
 
     },
     unmounted() { },

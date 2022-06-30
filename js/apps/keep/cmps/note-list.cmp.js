@@ -1,16 +1,20 @@
-import { noteService } from '../services/note-service.js';
 import notePreview from './note-preview.cmp.js'
 
 export default {
     props: ['notes'],
     template: `
-    <div class="note-list"
-     v-for="(note,idx) in notes" :key="note.id">
-
-      <note-preview @removeNoteId="removeNote" :note="note"/>
-    </div>
+        <div class="note-container">
+          <note-preview class="note"
+            v-for="(note,idx) in notes"
+           :key="note.id"
+           :note="note"
+           @removeNote="$emit('remove-note',$event)"
+            @changeBgColor="$emit('change-bg-color',$event)"
+            @pinnedNote="$emit('pinned-note', $event)"
+           />
+        </div>
 `,
-    name: 'note-list!',
+    name: 'note-list',
     data() {
         return {
         }
@@ -23,9 +27,6 @@ export default {
     created() { },
 
     methods: {
-        removeNote(delNoteId) {
-            this.$emit('del-note-id', delNoteId)
-        }
     },
 
     computed: {},
