@@ -36,12 +36,7 @@ export default {
 
     },
     created() {
-<<<<<<< HEAD
     },
-=======
-        // console.log(this.note);
-     },
->>>>>>> c173178b3515a836f17bd836f590802d0b2b56b2
     methods: {
     },
     computed: {
