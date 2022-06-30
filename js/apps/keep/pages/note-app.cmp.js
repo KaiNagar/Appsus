@@ -3,8 +3,8 @@ import { noteService } from "../services/note-service.js"
 
 export default {
     template: `
-    <section class="note-app">
-         <note-list v-if="notes" @remove="removeNote" :notes="notes" />
+    <section v-if="notes" class="note-app">
+         <note-list v-if="notes" @delNoteId="removeNote" :notes="notes" />
         
         </section>
 `,
@@ -22,21 +22,18 @@ export default {
             .then(notes => this.notes = notes)
     },
     methods: {
-        getNotes() {
-            keepService.query()
-                .then(notes => {
-                    this.notes = notes
-                    console.log(this.notes)
-                })
-        },
+        // getNotes() {
+        //     noteService.query()
+        //         .then(notes => {
+        //             this.notes = notes
+        //             console.log(this.notes)
+        //         })
+        // },
 
-        removeNote(delNote) {
-            console.log(note)
-            const idx = this.notes.findIdx(note => {
-                note.id === delNote.id
-            })
+        removeNote(noteId) {
+            const idx = this.notes.findIndex(note => note.id === noteId)
             this.notes.splice(idx, 1)
-            noteService.removeNote(delNote.id)
+            noteService.removeNote(noteId)
         }
     },
     computed: {},

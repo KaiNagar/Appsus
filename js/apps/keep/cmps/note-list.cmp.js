@@ -7,7 +7,7 @@ export default {
     <div class="note-list"
      v-for="(note,idx) in notes" :key="note.id">
 
-      <note-preview @remove="removeNote" :note="note"/>
+      <note-preview @removeNoteId="removeNote" :note="note"/>
     </div>
 `,
     name: 'note-list!',
@@ -23,8 +23,8 @@ export default {
     created() { },
 
     methods: {
-        removeNote(delNote) {
-            this.$emit('remove', delNote)
+        removeNote(delNoteId) {
+            this.$emit('del-note-id', delNoteId)
         }
     },
 

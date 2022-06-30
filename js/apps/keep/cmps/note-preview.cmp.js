@@ -12,11 +12,10 @@ export default {
     <component class="note" :is="note.type"
             :info="note.info">
         </component>
-        <note-actions @remove="removeNote" :note="note"/>
+        <note-actions @removeNote="removeNote" :note="note"/>
     </article>
 `,
-    name: 'note-preview'
-    ,
+    name: 'note-preview',
     data() {
         return {}
     },
@@ -27,10 +26,12 @@ export default {
         noteActions,
         noteVideo
     },
-    created() { },
+    created() {
+        console.log(this.note);
+     },
     methods: {
         removeNote(delNote) {
-            this.$emit('remove', delNote)
+            this.$emit('remove-note-id', delNote.id)
         }
     },
     computed: {

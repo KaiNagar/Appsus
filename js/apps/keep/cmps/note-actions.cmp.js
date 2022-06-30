@@ -30,10 +30,10 @@ export default {
         changeBgColor(color) {
             console.log('color');
             console.log(color);
-
         },
         removeNote() {
-            this.$emit('remove', this.note)
+            console.log(this.note);
+            this.$emit('remove-note', this.note)
         }
     },
     computed: {},
