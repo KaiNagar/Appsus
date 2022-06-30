@@ -4,7 +4,9 @@ import notePreview from './note-preview.cmp.js'
 export default {
     props: ['notes'],
     template: `
-    <div class="note-container" v-for="(note,idx) in notes" :key="note.id">
+    <div class="note-list"
+     v-for="(note,idx) in notes" :key="note.id">
+
       <note-preview @remove="removeNote" :note="note"/>
     </div>
 `,

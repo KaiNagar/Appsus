@@ -1,15 +1,20 @@
+import notesData from './notes.json' assert { type: 'json' }
 import { utilService } from "../../../services/util-service.js"
 import { storageService } from "../../../services/async-storage-service.js"
 
 
-
+// "url": "https://source.unsplash.com/random/200x200?sig=5",
 const NOTE_KEY = 'noteDB'
 _createNotes()
 
 export const noteService = {
     query,
     removeNote,
-    get
+    get,
+    changeNoteBgc,
+    save,
+    addNote,
+
 }
 
 
@@ -22,6 +27,24 @@ function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
 }
 
+function save(note) {
+    if (note.id) return storageService.put(NOTE_KEY, note)
+    else return storageService.post(NOTE_KEY, note)
+}
+
+function addNote(note) {
+    const { type, info } = note
+    const newNote = {
+        type,
+        info,
+        style: {
+            backgroundColor: '#495057',
+        },
+    }
+
+    return save(newNote)
+}
+
 function removeNote(noteId) {
     return get(noteId)
         .then(noteId => {
@@ -29,64 +52,21 @@ function removeNote(noteId) {
         })
 }
 
+function changeNoteBgc({ color, noteId }) {
+    return get(noteId)
+        .then(note => {
+            note.style.backgroundColor = color
+            return save(note)
+        })
+}
+
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {
-        notes = getNote()
+        notes = notesData
         utilService.saveToStorage(NOTE_KEY, notes)
     }
     console.log(notes);
     return notes
 }
 
-
-function getNote() {
-    return [
-        {
-            id: "n101",
-            type: "note-txt",
-            isPinned: true,
-            info: {
-                title: "",
-                txt: "Fullstack Me Baby!"
-            }
-        },
-        {
-            id: "n102",
-            type: "note-txt",
-            isPinned: true,
-            info: {
-                title: "",
-                txt: "Fullstack Me Baby!"
-            }
-        },
-        {
-            id: "n103",
-            type: "note-img",
-            info: {
-                url: "",
-                title: "Bobi and Me"
-            },
-            style: {
-                backgroundColor: "#00d"
-            }
-        },
-        {
-            id: "n104",
-            type: "note-todos",
-            info: {
-                title: "Get my stuff together",
-                todos: [
-                    {
-                        txt: "Driving liscence", doneAt: null
-                    },
-                    {
-                        txt: "Coding power",
-                        doneAt: 187111111
-                    }
-                ]
-            }
-        }
-    ]
-
-}
