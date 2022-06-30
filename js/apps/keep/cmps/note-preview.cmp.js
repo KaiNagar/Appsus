@@ -8,8 +8,8 @@ import { noteService } from "../services/note-service.js";
 export default {
     props: ['note'],
     template: `
-    <article class='note-preview' :style="bgc">
-    <component class='note' :is="note.type"
+    <article v-if="note" class="note-preview" :style="bgc">
+    <component class="note" :is="note.type"
             :info="note.info">
         </component>
         <note-actions @remove="removeNote" :note="note"/>
@@ -29,10 +29,14 @@ export default {
     },
     created() { },
     methods: {
-        removeNote() {
-            this.$emit('remove', this.note)
+        removeNote(delNote) {
+            this.$emit('remove', delNote)
         }
     },
-    computed: {},
+    computed: {
+        bgc() {
+            return { backgroundColor: this.note.style.backgroundColor }
+        }
+    },
     unmounted() { },
-};
+}
