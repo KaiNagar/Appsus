@@ -71,6 +71,7 @@ export default {
         }),
             this.draftInterval = setInterval(() => {
                 console.log('count');
+                if (!this.newEmail.subject && this.newEmail.to && this.newEmail.userName) return
                 emailService.saveEmailDraft(this.newEmail)
             }, 5000);
     },

@@ -2,10 +2,9 @@ import { router } from "../../../router.js";
 import { emailService } from "../services/email-service.js";
 
 export default {
-    props: [],
+    props: ['unRed'],
     template: `
         <section class="email-side-filter">
-            <!-- <h1>side filter</h1> -->
             <div @click="pushRouter" class="add-compose-action">
                 <span class="plus"></span>
                 <span class="compose">Compose</span> 
@@ -16,6 +15,7 @@ export default {
                 <div @click="setType('sent')" ref="sent" class="tab sent-tab"><img class="icon" src="./imgs/email-icons/sent.png">Sent</div>
                 <div @click="setType('drafts')" ref="drafts" class="tab drafts-tab"><img class="icon" src="./imgs/email-icons/draft.png">Drafts</div>
                 <div @click="setType('trash')" ref="trash" class="tab trash-tab"><img class="icon" src="./imgs/email-icons/trash.png">Trash</div>
+                <div class="tab">Emails unred: {{unRed}}</div>
             </div>
         </section>
     `,

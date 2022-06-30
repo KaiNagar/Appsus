@@ -77,7 +77,7 @@ function _createNotes() {
         notes = notesData
         utilService.saveToStorage(NOTE_KEY, notes)
     }
-    console.log(notes);
+    // console.log(notes);
     return notes
 }
 

@@ -2,16 +2,20 @@ import { emailService } from "../services/email-service.js";
 
 export default {
     template: `
-        <section>
+        <section class="email-expand-preview">
             <div class="expand-header flex space-between align-center">
-                <h1>{{email.subject}}</h1>
+                <span class="emailTitle">{{email.subject}}</span>
                 <div class="expand-actions">
-                    <button @click="removeEmail">Delete</button>
-                    <button @click="readFullEmail">Read More</button>
+                    <button @click="removeEmail"><img src="./imgs/email-icons/trash.png" alt="Trash icon"></button>
+                   <button>
+                    <router-link :to="'/email/' + email.id">
+                        <img src="./imgs/email-icons/expand.png" alt="Expand icon">
+                    </router-link>
+                </button>
                 </div>
             </div>
-            <h2>{{email.userName}} {{emailFormat}}</h2>
-            <p>{{email.body}}</p>
+            <span class="userInfo">{{email.userName}} <span class="userMail">{{emailFormat}}</span> </span>
+            <p class="email-body-expand">{{email.body}}</p>
         </section>   
  `,
     props: ['email'],
