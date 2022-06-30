@@ -39,12 +39,12 @@ export default {
                         'success'
                     )
                     emailService.removeEmail(this.type, this.email)
-                    this.$emit('delId',this.email.id)
-                } 
-              })
+                    this.$emit('delId', this.email.id)
+                }
+            })
         },
         readFullEmail() {
-            console.log(this.email);
+            console.log(this.email.id);
         }
     },
     computed: {

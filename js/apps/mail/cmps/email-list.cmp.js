@@ -7,7 +7,7 @@ export default {
         <table>
             <tbody>
                 <tr v-for="email in emails" :key="email.id" class="email-preview-container">
-                    <email-preview @delId="delEmail" @click="expand=!expand" :email="email" @open="select(email.id)"/>
+                    <email-preview @delId="delEmail" @click="expand=!expand" :email="email"/>
                 </tr>
             </tbody>
         </table>
@@ -22,10 +22,6 @@ export default {
         };
     },
     methods: {
-        select(emailId) {
-            console.log(emailId);
-            this.$emit('selected', emailId)
-        },
         expandPreview() {
             console.log('yo');
         },
@@ -38,7 +34,6 @@ export default {
 
     },
     created() {
-        console.log(this.emails);
         setTimeout(() => {
 
         }, 1000);

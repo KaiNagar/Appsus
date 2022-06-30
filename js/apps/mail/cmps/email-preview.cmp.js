@@ -37,8 +37,8 @@ export default {
             if (this.isRead) console.log('red');
             else console.log('star');
         },
-        delEmail(emailId){
-            this.$emit('delId',emailId)
+        delEmail(emailId) {
+            this.$emit('delId', emailId)
         }
     },
     computed: {
@@ -52,8 +52,8 @@ export default {
             if (this.email.isRead) return
             return 'bold'
         },
-        formattedTime(){
-            return emailService.formattedTime(this.email.sentAt)
+        formattedTime() {
+            return emailService.formattedTime(this.email.sentAt, this.email)
         }
 
 

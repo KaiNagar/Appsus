@@ -53,7 +53,7 @@ const sentEmailsData = [
         body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. In itaque corrupti natus porro nobis quidem dolorum fuga, sequi nisi consectetur consequuntur alias blanditiis veritatis quia aspernatur ut vitae laudantium mollitia?',
         isRead: false,
         isStarred: false,
-        sentAt: 1656404967853,
+        sentAt: 1656304967853,
         to: 'pukishuki@CA.com',
         userName: 'Puki'
     },
@@ -63,7 +63,7 @@ const sentEmailsData = [
         body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ipsa in doloribus nemo adipisci aliquid inventore voluptatem impedit voluptatum ut, dolorem quisquam, reiciendis modi sint odit rerum officia velit dolores!',
         isRead: false,
         isStarred: false,
-        sentAt: 1656402967853,
+        sentAt: 1245402967853,
         to: 'pukishuki@CA.com',
         userName: 'Puki'
     },
@@ -186,9 +186,17 @@ function _setData() {
 }
 
 function formattedTime(timeStamp) {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Novr", "Dec"];
     let now = Date.now()
     let diff = now - timeStamp
-
+    let day = 1000 * 60 * 60 * 24
+    let clock = new Date(timeStamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    let date = `${new Date(timeStamp).getDate()} ${monthNames[new Date(timeStamp).getMonth()]}`
+    let year = new Date(timeStamp).getFullYear().toString().slice(-2)
+    if (diff < day) return clock
+    else if (diff < day * 365) return date
+    else if (diff > day * 365) return `${date},${year}`
 }
 
 
@@ -204,13 +212,11 @@ function removeEmail(emailType, delEmail) {
     let key
     if (emailType === 'sent') key = SENT_MAIL_KEY
     else key = INBOX_MAIL_KEY
-    storageService.query(DELETED_MAIL_KEY).then(emails => {
-        if (emails.some(email => email.id === delEmail.id)) {
-            console.log(delEmail.id);
-            console.log('in');
-            storageService.remove(DELETED_MAIL_KEY, delEmail.id).then(res => console.log(res))
+    return storageService.query(DELETED_MAIL_KEY).then(emails => {
+        let inDel = emails.some(email => email.id === delEmail.id)
+        if (inDel) {
+            storageService.remove(DELETED_MAIL_KEY, delEmail.id)
         } else {
-            console.log('afad');
             emails.unshift(delEmail)
             utilService.saveToStorage(DELETED_MAIL_KEY, emails)
             storageService.remove(key, delEmail.id)
