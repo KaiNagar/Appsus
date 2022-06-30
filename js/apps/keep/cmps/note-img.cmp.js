@@ -3,7 +3,8 @@ export default {
 
     template: `
     <section class="note-img" >
-        <img :src="imgUrl" />
+        <img :src="info.url" />
+        <h4>{{ info.title }}</h4>
     </section>
 `,
     data() {

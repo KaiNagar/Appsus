@@ -1,0 +1,94 @@
+[
+    {
+        "id": "n101",
+        "type": "note-txt",
+        "isPinned": true,
+        "info": {
+            "txt": "Fullstack Me Baby!"
+        },
+        "style": {
+            "backgroundColor": "#495057"
+        }
+    },
+    {
+        "id": "n102",
+        "type": "note-img",
+        "info": {
+            "url": "",
+            "title": "Bobi and Me"
+        },
+        "style": {
+            "backgroundColor": "#495057"
+        }
+    },
+    {
+        "id": "n103",
+        "type": "note-video",
+        "info": {
+            "videoId": "tgbNymZ7vqY"
+        },
+        "style": {
+            "backgroundColor": "#495057"
+        }
+    },
+    {
+        "id": "n104",
+        "type": "note-todos",
+        "info": {
+            "label": "Get my stuff together",
+            "todos": [
+                {
+                    "txt": "Driving liscence",
+                    "doneAt": null
+                },
+                {
+                    "txt": "Coding power",
+                    "doneAt": 187111111
+                }
+            ]
+        },
+        "style": {
+            "backgroundColor": "#495057"
+        }
+    },
+    {
+        "id": "n105",
+        "type": "note-todos",
+        "info": {
+            "label": "Get my stuff together",
+            "todos": [
+                {
+                    "txt": "Driving liscence",
+                    "doneAt": null
+                },
+                {
+                    "txt": "Coding power",
+                    "doneAt": 187111111
+                }
+            ]
+        },
+        "style": {
+            "backgroundColor": "#495057"
+        }
+    },
+    {
+        "id": "n106",
+        "type": "note-todos",
+        "info": {
+            "label": "Get my stuff together",
+            "todos": [
+                {
+                    "txt": "Driving liscence",
+                    "doneAt": null
+                },
+                {
+                    "txt": "Coding power",
+                    "doneAt": 187111111
+                }
+            ]
+        },
+        "style": {
+            "backgroundColor": "#495057"
+        }
+    }
+]
