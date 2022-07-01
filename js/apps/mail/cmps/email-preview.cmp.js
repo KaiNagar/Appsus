@@ -1,5 +1,6 @@
 import { emailService } from "../services/email-service.js";
 import emailExpandPreview from "./email-expand-preview.cmp.js";
+import {eventBus} from "../../../services/eventBus-service.js"
 
 export default {
     template: `
@@ -34,12 +35,16 @@ export default {
     },
     methods: {
         readEmail() {
+            if(!this.email.isRead){
+                this.$emit('updateCount',false)
+            }else this.$emit('updateCount',true)
             this.expand = !this.expand
             if (this.starClick) return
             if (this.readClick) return
             this.$refs.previewRef.classList.add('email-red')
             this.email.isRead = true
             emailService.updateEmail(this.emailType, this.email)
+
         },
         makeImp() {
             this.starClick = true
@@ -47,10 +52,14 @@ export default {
             if (this.email.isStarred) {
                 this.$refs.starIcon.classList.remove('starImp-active')
                 this.email.isStarred = false
+                eventBus.emit('show-msg', { txt: `Set email from ${this.email.userName} not important`, type: 'success' });
+
             }
             else {
                 this.$refs.starIcon.classList.add('starImp-active')
                 this.email.isStarred = true
+                eventBus.emit('show-msg', { txt: `Set email from ${this.email.userName} important`, type: 'success' });
+
             }
             emailService.updateEmail(this.emailType, this.email)
         },

@@ -22,8 +22,9 @@ export default {
                     </div>
                     <div class="details-body">{{email.body}}</div>
                 </div>
-                    <router-link class="next-email" :to="'/email/' + email.id" title="Read Next Email">Next Email</router-link>
-                    <router-link class="prev-email" :to="'/email/' + email.id" title="Read Prev Email">Prev Email</router-link>
+                <!-- <button @click="getN"></button> -->
+                    <!-- <router-link class="next-email" :to="'/email/' + nextEmailId" title="Read Next Email">Next Email</router-link>
+                    <router-link class="prev-email" :to="'/email/' + prevEmailId" title="Read Prev Email">Prev Email</router-link> -->
             </div>
 
 
@@ -35,7 +36,9 @@ export default {
     data() {
         return {
             email: null,
-            type: null
+            type: null,
+            nextEmailId: null,
+            prevEmailId: null,
         };
     },
     methods: {
@@ -64,6 +67,11 @@ export default {
                 }
             })
         },
+
+        getPrevEmailId() {
+            emailService.getPrevId(this.email)
+
+        },
     },
     computed: {
         emailFormat() {
@@ -84,18 +92,21 @@ export default {
                 if (this.email.to) this.type = 'sent'
                 else if (this.email.from) this.type = 'recived'
             })
-            
-    },
 
+    },
     // watch: {
     //     '$route.params.emailId': {
     //         handler() {
+    //             if (!this.$route.params.emailId) return
     //             const id = this.$route.params.emailId
-    //             emailService.getEmailById(id)
-    //             .then(email=> {
-    //                 console.log(email);
+    //             emailService.getEmailById(id).then(email => {
     //                 this.email = email
-    //                 console.log(this.email);
+    //                 emailService.getNextId(email)
+    //                     .then(nextEmailId => {
+    //                         console.log(nextEmailId);
+    //                         this.nextEmailId = nextEmailId
+    //                     })
+
 
     //             })
     //         },
