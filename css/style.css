@@ -9,7 +9,11 @@
 @import './books/cmps/book-add.css';
 
 
-@import './notes/note-txt.css';
+@import './notes/note-actions/note-tool-bar.css';
+@import './notes/notes-cmps/note-add.css';
+@import './notes/notes-cmps/note-app.css';
+@import './notes/notes-cmps/note-todo.css';
+@import './notes/notes-cmps/note-txt.css';
 
 
 @import './books/views/book-app.css';
@@ -32,14 +36,3 @@
     --clr-white: #fff;
     --clr-Black: #000;
 }
-
-
-
-
-
-
-
-
-
-
-

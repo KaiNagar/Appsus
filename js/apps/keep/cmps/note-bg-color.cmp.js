@@ -18,6 +18,8 @@ export default {
                 '#ffa5a5',
                 '#fff',
                 '#f29164'
+
+
             ]
         }
     },
@@ -26,7 +28,6 @@ export default {
 
     methods: {
         changeBgColor(color) {
-            console.log('checkk', color);
             this.$emit('bg-color', color)
         }
     },

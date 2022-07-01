@@ -1,0 +1,53 @@
+.action-btns {
+    align-items: center;
+    padding: 1em;
+    bottom: 0.1em;
+    display: inline-flex;
+}
+
+.action-btns .fa-solid {
+    font-size: 1em;
+    cursor: pointer;
+    color: rgb(68, 66, 66);
+
+}
+
+.action-btns .fa-solid:hover {
+    color: black;
+}
+
+.action-btns button {
+    background-color: transparent;
+    border: transparent;
+}
+
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    top: 20px;
+    left: 15px;
+    border-radius: 3px;
+    position: absolute;
+    gap: 0.2rem;
+    padding: 0.3rem;
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 1;
+    transition: opacity 0.3s;
+    break-inside: avoid;
+    background-color: rgba(225, 232, 237, 0.523);
+}
+
+.color-palette-btn {
+    position: relative;
+}
+
+.color-palette div {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+}
+
+.color-palette div:hover {
+    transform: scale(110%);
+}

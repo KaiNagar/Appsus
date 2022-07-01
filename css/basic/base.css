@@ -2,9 +2,25 @@
     box-sizing: border-box;
 }
 
+#app {
+    height: 100%;
+}
+
 body {
     margin: 0;
+    height: 100vh;
 }
+
+.main-wrapper {
+    height: 100%;
+}
+
+.main {
+    flex-grow: 1;
+    flex-direction: column;
+    position: relative;
+}
+
 
 html {
     font-family: sans-serif;

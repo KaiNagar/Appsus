@@ -2,45 +2,45 @@
     {
         "id": "n101",
         "type": "note-txt",
+        "title": "Welcome to Keep",
         "isPinned": true,
         "info": {
-            " title": "Welcome to Keep",
             "txt": "Fullstack Me Baby!"
         },
         "style": {
-            "backgroundColor": "#f29164"
+            "backgroundColor": "#dbf4a6"
         }
     },
     {
         "id": "n102",
         "type": "note-img",
         "isPinned": false,
+        "title": "Bobi and Me",
         "info": {
-            "url": "https://source.unsplash.com/random/200x200?sig=5",
-            "title": "Bobi and Me"
+            "url": "https://source.unsplash.com/random/200x200?sig=5"
         },
         "style": {
-            "backgroundColor": "#d0aaaa"
+            "backgroundColor": "#c8e9eb"
         }
     },
     {
         "id": "n103",
         "type": "note-img",
         "isPinned": false,
+        "title": "Bobi and Me",
         "info": {
-            "url": "https://source.unsplash.com/random/200x200?sig=6",
-            "title": "Bobi and Me"
+            "url": "https://source.unsplash.com/random/200x200?sig=6"
         },
         "style": {
-            "backgroundColor": "#d0aaaa"
+            "backgroundColor": "#e6805b"
         }
     },
     {
         "id": "n104",
         "type": "note-video",
+        "title": "Video",
         "isPinned": false,
         "info": {
-            "title": "Video",
             "videoId": "tgbNymZ7vqY"
         },
         "style": {
@@ -50,64 +50,70 @@
     {
         "id": "n105",
         "type": "note-todos",
+        "title": "Get my stuff together",
         "isPinned": false,
         "info": {
-            "title": "Get my stuff together",
             "todos": [
                 {
+                    "isDone": false,
                     "txt": "Driving liscence",
                     "doneAt": null
                 },
                 {
+                    "isDone": false,
                     "txt": "Coding power",
                     "doneAt": 187111111
                 }
             ]
         },
         "style": {
-            "backgroundColor": "#c96946"
+            "backgroundColor": "#f9dca5"
         }
     },
     {
         "id": "n106",
         "type": "note-todos",
+        "title": "Get my stuff together",
         "isPinned": false,
         "info": {
-            "title": "Get my stuff together",
             "todos": [
                 {
+                    "isDone": true,
                     "txt": "Driving liscence",
                     "doneAt": null
                 },
                 {
+                    "isDone": false,
                     "txt": "Coding power",
                     "doneAt": 187111111
                 }
             ]
         },
         "style": {
-            "backgroundColor": "#c96946"
+            "backgroundColor": "#f9dca5"
         }
     },
     {
         "id": "n107",
         "type": "note-todos",
+        "title": "Get my stuff together",
         "isPinned": false,
         "info": {
-            "title": "Get my stuff together",
             "todos": [
                 {
+                    "isDone": false,
                     "txt": "Driving liscence",
                     "doneAt": null
                 },
                 {
+                    "isDone": false,
                     "txt": "Coding power",
                     "doneAt": 187111111
                 }
             ]
         },
         "style": {
-            "backgroundColor": "#c96946"
+            "backgroundColor": "#f9dca5"
         }
     }
 ]

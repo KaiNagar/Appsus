@@ -7,14 +7,15 @@ export default {
     props: ['note'],
     template: `
     <section class="action-btns"
-     v-if="note">
+         v-if="note">
         <button class="pined-btn"
          @click="pinnedNote">
-            <i class="fa-solid fa-thumbtack"></i>
+            <i class="fa-solid fa-thumbtack" 
+            :style="{color:note.isPinned? 'orange':''}"></i>
         </button>
             <button
                 @click="removeNote">
-                <i class="fa-solid fa-trash-can"></i>
+                <i class="fa-solid fa-trash-can" ></i>
                 </button>
 
                 <a @click="showBgColor"
@@ -52,13 +53,9 @@ export default {
             this.$emit('remove-note', this.note.id)
         },
         pinnedNote() {
-            // if (!this.note.isPinned) this.note.isPinned = true
-            // else 
-            this.note.isPinned = !this.note.isPinned
-            this.$emit('pinned-note', this.note)
-
+            this.$emit('pinned-note', this.note.id)
         }
     },
     computed: {},
     unmounted() { },
-};
+}

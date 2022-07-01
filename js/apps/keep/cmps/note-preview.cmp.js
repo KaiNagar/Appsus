@@ -10,11 +10,21 @@ export default {
     props: ['note'],
     template: `
     <article :style="bgc">
-        <h3 class="note-title">{{note.info.title}}</h3>
+        <div class="note-title">
+            <h3 v-if="!isEditTitle"  @click="onEditTitle">{{note.title}}</h3>
+            <input v-else 
+            ref="titleInput"
+            type="text" 
+            :value="note.title"
+             @input="updateTitle($event.target.value)" 
+            @keyup.enter="isEditTitle=false"
+            @blur="isEditTitle=false"
+            />
+        </div>
         <component 
         :is="note.type"
         :info="note.info"
-        @newTxt="updateTxt"
+        @updateNoteInfo="updateNoteInfo"
         >
         </component>
         <note-actions class="note-actions"
@@ -27,7 +37,9 @@ export default {
 `,
     name: 'note-preview',
     data() {
-        return {}
+        return {
+            isEditTitle: false
+        }
     },
     components: {
         noteTxt,
@@ -41,15 +53,25 @@ export default {
     },
 
     methods: {
-        updateTxt(txt){
-            this.note.info.txt = txt
-            noteService.updateNote(this.note)
+        updateNoteInfo(info) {
+            this.note.info = info
+            noteService.save(this.note)
+        },
+        updateTitle(newTitle) {
+            this.note.title = newTitle
+            noteService.save(this.note)
+        },
+        onEditTitle() {
+            this.isEditTitle = true
+            this.$nextTick(() => {
+                this.$refs.titleInput.focus()
+            })
         }
     },
 
     computed: {
         bgc() {
-            return { backgroundColor: this.note?.style?.backgroundColor }
+            return { backgroundColor: this.note?.style.backgroundColor }
         }
     },
     unmounted() { },

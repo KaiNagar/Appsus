@@ -14,7 +14,7 @@ export const noteService = {
     changeNoteBgc,
     save,
     addNote,
-    updateNote,
+    togglePinned,
 }
 
 
@@ -22,14 +22,13 @@ function query() {
     return storageService.query(NOTE_KEY)
 }
 
-
 function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
 }
 
 function save(note) {
     if (note.id) return storageService.put(NOTE_KEY, note)
-    else return storageService.postFirst(NOTE_KEY, note)
+    else return storageService.post(NOTE_KEY, note)
 }
 
 function addNote(note) {
@@ -45,16 +44,19 @@ function addNote(note) {
 }
 
 function removeNote(noteId) {
-    get(noteId)
+    return get(noteId)
         .then(note => {
             return storageService.remove(NOTE_KEY, note.id)
         })
 }
 
-function updateNote(note){
-    storageService.put(NOTE_KEY,note)
+function togglePinned(noteId) {
+    return get(noteId)
+        .then(note => {
+            note.isPinned = !note.isPinned
+            return save(note)
+        })
 }
-
 
 function changeNoteBgc(color, noteId) {
     return get(noteId)

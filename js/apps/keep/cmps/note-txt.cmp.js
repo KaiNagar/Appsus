@@ -2,25 +2,23 @@
 export default {
     props: ['info'],
     template: `
-    <section class="note-body">
-          <p ref="updatedTxt" @input="updateNote" contenteditable="true" v-if="info.txt">{{ info.txt}}</p>
-    </section>
-
-
-
+         <section class="note-body">
+                <input type="text"
+                ref="updatedTxt"
+                @input="updateNote"
+             />
+        </section>
 `,
-    name: 'note-txt!',
     data() {
         return {
 
-        };
+        }
     },
     created() { },
     methods: {
         updateNote() {
-            // if(!this.$refs.updatedTxt.innerText)this.$refs.updatedTxt.innerText = '-'
             let updatedTxt = this.$refs.updatedTxt.innerText
-            this.$emit('newTxt', updatedTxt)
+            this.$emit('update-note-info', { ...this.info, txt: updatedTxt })
         }
     },
     computed: {},

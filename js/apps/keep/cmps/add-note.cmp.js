@@ -2,15 +2,28 @@ import { noteService } from "../services/note-service.js"
 
 export default {
     template: `
-    <section>
-        <form @submit.prevent="createNote" class="add-note-form">
-            <input ref="addNoteInput" placeholder="Add Note" type="text" />
-            <span @click="setNoteType('note-txt')" id="text">txt</span>
-            <span @click="setNoteType('note-img')" id="img">image</span>
+    <section class="add-note">
+        <form @submit.prevent="createNote"
+                class="add-note-form">
+                <input ref="addNoteInput"
+                placeholder="Add Note..."
+                type="text"
+               />
+            <span id="text" 
+                @click="setNoteType('note-txt')">
+                <i class="fa-solid fa-t"></i>
+            </span>
+            <span id="img" 
+                @click="setNoteType('note-img')">
+                <i class="fa-solid fa-image"></i>
+            </span>
             <!-- <input ref="userImage" @click="setNoteType('note-img',$event)" type="file"> -->
-            <span @click="setNoteType('note-todos')" id="todo">todo</span>
+            <span id="todo" 
+                @click="setNoteType('note-todos')">
+                <i class="fa-solid fa-list"></i>
+            </span>
             <!-- <span @click="newNote.type='note-video'" id="video">video</span> -->
-            <button>Add note</button>
+            <!-- <button>Add note</button> -->
         </form>
     </section>
 `,
@@ -26,22 +39,24 @@ export default {
     },
     created() { },
     methods: {
-        setNoteType(type, ev) {
+        setNoteType(type) {
             let input = this.$refs.addNoteInput
             this.newNote.type = type
-            if (type === 'note-txt') input.placeholder = 'Enter title following a comma then txt'
-            if (type === 'note-img') input.placeholder = 'Enter title following a comma then url'
-            if (type === 'note-todos') input.placeholder = 'Enter title following a comma then todos'
+
+            if (type === 'note-txt') input.placeholder = 'Enter text title'
+            if (type === 'note-img') input.placeholder = 'Add a image'
+            if (type === 'note-todos') input.placeholder = 'Enter title for your todos'
         },
+
         createNote() {
             let note = this.newNote
             let value = this.$refs.addNoteInput.value
+
             if (!value) return
-            let title = value.split(',')[0]
-            let info = value.split(',')[1]
+            let title = value
             if (note.type === 'note-txt') {
                 note.info = {
-                    title: title,
+                    title,
                     txt: info
                 }
             } else if (note.type === 'note-img') {

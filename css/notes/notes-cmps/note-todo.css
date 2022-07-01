@@ -1,0 +1,26 @@
+.txt-area {
+    resize: none;
+    background-color: transparent;
+    border: 2px dashed transparent;
+
+}
+
+.txt-area:hover {
+    border: 2px dashed gray;
+}
+
+.todo-content {
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.todo-content input {
+    position: relative;
+}
+
+.checked {
+    text-decoration: line-through;
+}

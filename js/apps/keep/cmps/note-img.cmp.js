@@ -2,7 +2,7 @@ export default {
     props: ['info'],
 
     template: `
-    <section>
+    <section class="note.body">
         <img :src="info.url" />
     </section>
 `,
