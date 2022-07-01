@@ -14,6 +14,7 @@ export const noteService = {
     changeNoteBgc,
     save,
     addNote,
+    updateNote,
 }
 
 
@@ -28,7 +29,7 @@ function get(noteId) {
 
 function save(note) {
     if (note.id) return storageService.put(NOTE_KEY, note)
-    else return storageService.post(NOTE_KEY, note)
+    else return storageService.postFirst(NOTE_KEY, note)
 }
 
 function addNote(note) {
@@ -40,15 +41,18 @@ function addNote(note) {
             backgroundColor: '#495057',
         },
     }
-
     return save(newNote)
 }
 
 function removeNote(noteId) {
-    return get(noteId)
-        .then(noteId => {
-            return storageService.remove(NOTE_KEY, noteId)
+    get(noteId)
+        .then(note => {
+            return storageService.remove(NOTE_KEY, note.id)
         })
+}
+
+function updateNote(note){
+    storageService.put(NOTE_KEY,note)
 }
 
 

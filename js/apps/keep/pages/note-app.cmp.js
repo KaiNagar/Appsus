@@ -7,9 +7,9 @@ export default {
     template: `
     <main class="main flex">
         <section class="note-app">
-            <!-- <add-note v-if="notes" /> -->
-            <pinned-note-list
-            />
+            <add-note @newNote="addNewNote" />
+
+            <pinned-note-list />
             <note-list v-if="notes"
             :notes="notes" 
             @removeNote="removeNote"
@@ -35,6 +35,10 @@ export default {
         this.loadNotes()
     },
     methods: {
+        addNewNote(newNote) {
+            this.notes.unshift(newNote)
+            noteService.addNote(newNote)
+        },
         pinnedNote() {
 
         },
@@ -45,7 +49,10 @@ export default {
 
         removeNote(noteId) {
             noteService.removeNote(noteId)
-                .then(this.loadNotes)
+
+
+
+
         },
 
         changeBgColor({ color, noteId }) {

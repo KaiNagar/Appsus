@@ -1,9 +1,9 @@
+
 export default {
     props: ['info'],
     template: `
     <section class="note-body">
-        <h3>{{info.title}}</h3>
-          <p v-if="info.txt">{{ info.txt }}</p>
+          <p ref="updatedTxt" @input="updateNote" contenteditable="true" v-if="info.txt">{{ info.txt}}</p>
     </section>
 
 
@@ -11,10 +11,18 @@ export default {
 `,
     name: 'note-txt!',
     data() {
-        return {};
+        return {
+
+        };
     },
     created() { },
-    methods: {},
+    methods: {
+        updateNote() {
+            // if(!this.$refs.updatedTxt.innerText)this.$refs.updatedTxt.innerText = '-'
+            let updatedTxt = this.$refs.updatedTxt.innerText
+            this.$emit('newTxt', updatedTxt)
+        }
+    },
     computed: {},
     unmounted() { },
 }

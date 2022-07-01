@@ -3,6 +3,7 @@ import noteImg from "./note-img.cmp.js"
 import noteTodos from "./note-todos.cmp.js"
 import noteVideo from "./note-video.cmp.js"
 import noteActions from "./note-actions.cmp.js"
+import { noteService } from "../services/note-service.js"
 
 
 export default {
@@ -13,6 +14,7 @@ export default {
         <component 
         :is="note.type"
         :info="note.info"
+        @newTxt="updateTxt"
         >
         </component>
         <note-actions class="note-actions"
@@ -39,11 +41,15 @@ export default {
     },
 
     methods: {
+        updateTxt(txt){
+            this.note.info.txt = txt
+            noteService.updateNote(this.note)
+        }
     },
 
     computed: {
         bgc() {
-            return { backgroundColor: this.note.style.backgroundColor }
+            return { backgroundColor: this.note?.style?.backgroundColor }
         }
     },
     unmounted() { },

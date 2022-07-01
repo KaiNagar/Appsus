@@ -3,7 +3,7 @@ export default {
 
     template: `
     <section>
-        <!-- <img :src="info.url" /> -->
+        <img :src="info.url" />
     </section>
 `,
     data() {
@@ -11,6 +11,7 @@ export default {
         }
     },
     created() {
+        console.log(this.info.url);
     },
     methods: {
 

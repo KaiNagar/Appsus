@@ -99,3 +99,17 @@
 .color-palette div:hover {
     transform: scale(110%);
 }
+
+.add-note-form {
+    padding: 2rem;
+    background-color: grey;
+    max-width: 90%;
+}
+.add-note-form input{
+    padding: 2rem;
+    width: 600px;
+}
+
+.add-note-form span {
+    margin: 1rem;
+}
