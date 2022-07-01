@@ -14,8 +14,6 @@ export const noteService = {
     changeNoteBgc,
     save,
     addNote,
-    changeNotePos
-
 }
 
 
@@ -53,19 +51,11 @@ function removeNote(noteId) {
         })
 }
 
-function changeNotePos(pinNoteId) {
-    query()
-        .then(notes => {
-            notes.unshift(pinNoteId)
-            utilService.saveToStorage(NOTE_KEY, notes)
-        })
-}
-
 
 function changeNoteBgc(color, noteId) {
     return get(noteId)
         .then(note => {
-            console.log({ note, noteId });
+            console.log({ note, noteId })
             note.style.backgroundColor = color
             return save(note)
         })
@@ -77,7 +67,7 @@ function _createNotes() {
         notes = notesData
         utilService.saveToStorage(NOTE_KEY, notes)
     }
-    // console.log(notes);
+    console.log(notes);
     return notes
 }
 

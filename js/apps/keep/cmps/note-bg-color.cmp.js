@@ -1,11 +1,9 @@
 export default {
-    // props[]
     template: `
-
         <section class="color-palette">
-            <div v-for="color in colors" 
+            <div v-for="color in colors"
             :style="{ backgroundColor: color }"
-            @click="changeBgColor(color)"
+            @click.capture="changeBgColor(color)"
             ></div>
         </section>
 `,
@@ -19,13 +17,16 @@ export default {
                 '#A9A9A9',
                 '#ffa5a5',
                 '#fff',
-                '#f29164',
+                '#f29164'
             ]
-        };
+        }
     },
-    created() { },
+    created() {
+    },
+
     methods: {
         changeBgColor(color) {
+            console.log('checkk', color);
             this.$emit('bg-color', color)
         }
     },

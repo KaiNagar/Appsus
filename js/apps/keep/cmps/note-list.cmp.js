@@ -27,6 +27,13 @@ export default {
     created() { },
 
     methods: {
+        removeNote(delNoteId) {
+            this.$emit('del-note-id', delNoteId)
+        },
+
+        changeBgColorEmit(color, noteId) {
+            this.$emit('color', color, noteId)
+        },
     },
 
     computed: {},

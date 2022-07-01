@@ -14,6 +14,7 @@
     {
         "id": "n102",
         "type": "note-img",
+        "isPinned": false,
         "info": {
             "url": "https://source.unsplash.com/random/200x200?sig=5",
             "title": "Bobi and Me"
@@ -25,6 +26,7 @@
     {
         "id": "n103",
         "type": "note-img",
+        "isPinned": false,
         "info": {
             "url": "https://source.unsplash.com/random/200x200?sig=6",
             "title": "Bobi and Me"
@@ -36,6 +38,7 @@
     {
         "id": "n104",
         "type": "note-video",
+        "isPinned": false,
         "info": {
             "title": "Video",
             "videoId": "tgbNymZ7vqY"
@@ -47,6 +50,7 @@
     {
         "id": "n105",
         "type": "note-todos",
+        "isPinned": false,
         "info": {
             "title": "Get my stuff together",
             "todos": [
@@ -67,6 +71,7 @@
     {
         "id": "n106",
         "type": "note-todos",
+        "isPinned": false,
         "info": {
             "title": "Get my stuff together",
             "todos": [
@@ -87,6 +92,7 @@
     {
         "id": "n107",
         "type": "note-todos",
+        "isPinned": false,
         "info": {
             "title": "Get my stuff together",
             "todos": [

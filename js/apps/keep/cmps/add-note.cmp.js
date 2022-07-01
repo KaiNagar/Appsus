@@ -1,12 +1,12 @@
 
 export default {
     template: `
-    <form>
+    <!-- <form>
         <input type="text" />
         <label id="text">T</label>
         <label id="img">IMG</label>
         <label id="todo">DO</label>
-    </form>
+    </form> -->
 `,
     data() {
         return {

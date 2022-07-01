@@ -1,5 +1,4 @@
 import noteBgColor from "./note-bg-color.cmp.js"
-import { noteService } from "../services/note-service.js";
 
 
 
@@ -8,7 +7,7 @@ export default {
     props: ['note'],
     template: `
     <section class="action-btns"
-     v-if="note" >
+     v-if="note">
         <button class="pined-btn"
          @click="pinnedNote">
             <i class="fa-solid fa-thumbtack"></i>
@@ -17,24 +16,29 @@ export default {
                 @click="removeNote">
                 <i class="fa-solid fa-trash-can"></i>
                 </button>
+
                 <a @click="showBgColor"
                  class="color-palette-btn">
                 <i class="fa-solid fa-palette"></i>
-                <note-bg-color v-if="isColor"
-                 @bgColor="changeBgColor"
-                 /></a>
-    </section>
+
+                <note-bg-color
+                v-if="isColor"
+                @bgColor="changeBgColor"
+                />
+                </a>
+            </section>
 `,
     components: {
         noteBgColor,
-        noteService,
     },
+
     data() {
         return {
-            isColor: false,
+            isColor: false
         }
     },
-    created() { },
+    created() {
+    },
     methods: {
         showBgColor() {
             this.isColor = !this.isColor
@@ -48,9 +52,9 @@ export default {
             this.$emit('remove-note', this.note.id)
         },
         pinnedNote() {
-            console.log('actions: ', this.note);
-            if (!this.note.isPinned) this.note.isPinned = true
-            else this.note.isPinned = !this.note.isPinned
+            // if (!this.note.isPinned) this.note.isPinned = true
+            // else 
+            this.note.isPinned = !this.note.isPinned
             this.$emit('pinned-note', this.note)
 
         }
