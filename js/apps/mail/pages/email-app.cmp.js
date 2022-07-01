@@ -8,10 +8,10 @@ export default {
     template: `
     <section v-if="emails" class="emails-app flex">
 
-        <side-filter :unRed="unRedCount" @emailType="setType"/>
+        <side-filter :unRead="unReadCount" :percentage="percentage" @emailType="setType"/>
         <div class="main-email-container flex column">
             <top-filter @filtered="setFilter"/>
-            <email-list @sortEmails="setSort"  :emails="emailsToDisplay"/>
+            <email-list @updateCount="setCount" @sortEmails="setSort"   :emails="emailsToDisplay"/>
         </div>
         <router-view></router-view>
         
@@ -28,9 +28,11 @@ export default {
             emails: null,
             filterBy: null,
             sideFilter: 'inbox',
-            unRedCount: null,
             sortBy: null,
-            sortDirection: true
+            sortDirection: true,
+            allMail: null,
+            unReadCount: null,
+            percentage: Math.round(this.unRedCount / this.allMail * 100)
         };
     },
     methods: {
@@ -73,13 +75,19 @@ export default {
                     if (this.sortDirection) {
                         this.emails = emails.filter(email => email.isStarred === true)
                         this.emails.push(...emails.filter(email => email.isStarred === false))
-                    }else{
-                        this.emails = emails.filter(email=>email.isStarred===false)
-                        this.emails.push(...emails.filter(email=>email.isStarred===true))
+                    } else {
+                        this.emails = emails.filter(email => email.isStarred === false)
+                        this.emails.push(...emails.filter(email => email.isStarred === true))
                     }
                 }
             })
-        }
+        },
+        setCount(diff) {
+            if (diff) this.unReadCount--
+            else this.unReadCount++
+            this.percentage = Math.round(((this.allMail - this.unReadCount) / this.allMail) * 100)
+            if (this.percentage < 0) this.percentage = 5
+        },
     },
     computed: {
         emailsToDisplay() {
@@ -89,7 +97,7 @@ export default {
             const regex = new RegExp(this.filterBy.txt, 'i')
             return this.emails.filter((email) => regex.test(email.to) ||
                 regex.test(email.body) || regex.test(email.subject) ||
-                regex.test(email.from) || regex.test(email.id))
+                regex.test(email.from) || regex.test(email.id) || regex.test(email.userName))
         }
     },
     created() {
@@ -98,11 +106,12 @@ export default {
         }),
             emailService.getInboxEmails()
                 .then(allMail => {
-                    this.unRedCount = allMail.length
+                    this.allMail = allMail.length
+                    this.unReadCount = allMail.length
                     allMail.forEach(email => {
-                        if (email.isRead) this.unRedCount--
-
+                        if (email.isRead) this.unReadCount--
                     })
+                    this.percentage = Math.round(((this.allMail - this.unReadCount) / this.allMail) * 100)
                 })
     },
     unmounted() { },

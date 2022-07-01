@@ -1,3 +1,4 @@
+import { eventBus } from "../../../services/eventBus-service.js";
 import emailPreview from "./email-preview.cmp.js";
 
 export default {
@@ -18,7 +19,7 @@ export default {
                     </tr>
                 </div>
                 <tr v-for="email in emails" :key="email.id" class="email-preview-container">
-                    <email-preview @delId="delEmail" @click="updateCount(email)"  :email="email"/>
+                    <email-preview @delId="delEmail" @updateCount="sendCount"   :email="email"/>
                 </tr>
             </tbody>
         </table>
@@ -29,23 +30,32 @@ export default {
     },
     data() {
         return {
+            unsubscribe:null,
             longBody: false,
             click: false,
+            note:null,
         };
     },
     methods: {
         delEmail(emailId) {
             const idx = this.emails.findIndex(email => email.id === emailId)
+            eventBus.emit('show-msg', { txt: `Deleted email from ${this.emails[idx].userName}`, type: 'success' });
             this.emails.splice(idx, 1)
+
         },
         sort(val) {
             if (val === 'read') this.click = !this.click
             this.$emit('sortEmails', val)
 
         },
-        updateCount(email) {
-            // if(email.isRead) console.log('works');
-        }
+        sendCount(diff){
+            this.$emit('updateCount',diff)
+        },
+        // getNote(note){
+        //     console.log('yo');
+        //     console.log(note);
+        //     this.note = note
+        // }
 
 
     },
@@ -53,9 +63,9 @@ export default {
 
     },
     created() {
-        setTimeout(() => {
-
-        }, 1000);
+        // this.unsubscribe = eventBus.on('get-note', this.getNote)
     },
-    unmounted() { },
+    unmounted() { 
+        // this.unsubscribe()
+    },
 };
