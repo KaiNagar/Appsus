@@ -35,8 +35,7 @@ export default {
         noteVideo,
 
     },
-    created() {
-    },
+    created() {},
     methods: {
     },
     computed: {

@@ -40,7 +40,11 @@ export default {
         setType(type) {
             emailService.setEmails(type).then(emails => this.emails = emails)
         },
+        //this function is big but keep in mind this function can sort 6 different values in both directions
+        //there most be a better why but i could think of one at this moment
         setSort(val) {
+            //sort direction true means sorting from new to old/read to unread/importent to not
+            //if false sorting the other way around
             this.sortBy = val
             if (val === this.sortBy) this.sortDirection = !this.sortDirection
             emailService.setEmails(this.sideFilter).then(emails => {
@@ -57,6 +61,22 @@ export default {
                 } else if (this.sortBy === 'subject') {
                     if (this.sortDirection) this.emails = emails.sort((mail1, mail2) => mail1.subject.localeCompare(mail2.subject))
                     else this.emails = emails.sort((mail1, mail2) => mail2.subject.localeCompare(mail1.subject))
+                } else if (this.sortBy === 'read') {
+                    if (this.sortDirection) {
+                        this.emails = emails.filter(email => email.isRead === true)
+                        this.emails.push(...emails.filter(email => email.isRead === false))
+                    } else {
+                        this.emails = emails.filter(email => email.isRead === false)
+                        this.emails.push(...emails.filter(email => email.isRead === true))
+                    }
+                } else if (this.sortBy === 'starred') {
+                    if (this.sortDirection) {
+                        this.emails = emails.filter(email => email.isStarred === true)
+                        this.emails.push(...emails.filter(email => email.isStarred === false))
+                    }else{
+                        this.emails = emails.filter(email=>email.isStarred===false)
+                        this.emails.push(...emails.filter(email=>email.isStarred===true))
+                    }
                 }
             })
         }

@@ -5,11 +5,14 @@ export default {
     template: `
         <section ref="previewRef" class="email-preview">
             <div ref="shrinkRef" @click="readEmail" class="email-preview-shrink flex align-center space-around">
-                <td @click="makeImp" class="starImp">☆</td>
-                <!-- <td><input ref="star" type="checkbox"></td> -->
+                <td ref="starIcon" @click="makeImp" class="starImp" title="Toggle Important">&#9733;</td>
                 <td class="bold">{{email.userName}}</td>
                 <td :class="checkIfRead">{{email.subject}}</td>
                 <td>{{emailBodyShort}}...</td>
+                <td ref="readIcon" @click="toggleRead" class="read-status" title="Toggle Read">
+                <i v-if="!email.isRead" class="fa-regular fa-envelope"></i>
+                <i v-if="email.isRead"  class="fa-regular fa-envelope-open"></i>
+                </td>
                 <td :class="checkIfRead" class="time">{{formattedTime}}</td>
             </div>
             <hr v-if="expand">
@@ -24,27 +27,49 @@ export default {
         return {
             isRead: null,
             expand: false,
-            isStarred:false
+            starClick: false,
+            emailType: null,
+            readClick: false,
         };
     },
     methods: {
         readEmail() {
             this.expand = !this.expand
+            if (this.starClick) return
+            if (this.readClick) return
             this.$refs.previewRef.classList.add('email-red')
-            let emailType
             this.email.isRead = true
-            if (this.email.to) emailType = 'sent'
-            else emailType = 'recived'
-            emailService.updateEmail(emailType, this.email)
+            emailService.updateEmail(this.emailType, this.email)
         },
         makeImp() {
-            let val = this.$refs.star.val
-            console.log(val);
+            this.starClick = true
+            this.expand = !this.expand
+            if (this.email.isStarred) {
+                this.$refs.starIcon.classList.remove('starImp-active')
+                this.email.isStarred = false
+            }
+            else {
+                this.$refs.starIcon.classList.add('starImp-active')
+                this.email.isStarred = true
+            }
+            emailService.updateEmail(this.emailType, this.email)
         },
         delEmail(emailId) {
             this.$emit('delId', emailId)
         },
-       
+        toggleRead() {
+            this.expand = !this.expand
+            this.readClick = true
+            if (this.email.isRead) {
+                this.email.isRead = false
+                this.$refs.previewRef.classList.remove('email-red')
+            } else {
+                this.email.isRead = true
+                this.$refs.previewRef.classList.add('email-red')
+            }
+            emailService.updateEmail(this.emailType, this.email)
+        }
+
     },
     computed: {
         emailBodyShort() {
@@ -65,11 +90,12 @@ export default {
     },
     created() {
         this.isRead = this.email.isRead
-
+        if (this.email.to) this.emailType = 'sent'
+        else this.emailType = 'recived'
     },
     mounted() {
         if (this.isRead) this.$refs.previewRef.classList.add('email-red')
-
+        if (this.email.isStarred) this.$refs.starIcon.classList.add('starImp-active')
     },
     unmounted() { },
 };

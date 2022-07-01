@@ -11,7 +11,9 @@
     color: black;
     border-radius: 2rem;
     padding: 0.2rem 0.5rem;
+    padding-inline-end: 1.2rem;
     margin: 1rem;
+    margin-top: 6.5rem;
 }
 
 
@@ -45,6 +47,7 @@
 
 .tab:hover {
     background-color: rgba(221, 222, 233, 0.414);
+    color: rgba(255, 255, 255, 0.338);
     cursor: pointer;
 }
 
@@ -72,7 +75,7 @@
     border: 0;
     background-color: rgba(255, 255, 255, 0.206);
     font-size: 1.3rem;
-    width: 95%;
+    width: 93.5%;
     margin-top: 1rem;
     margin-left: 1rem;
     transition: all 0.5s;

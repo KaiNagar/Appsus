@@ -6,8 +6,8 @@ export default {
             <div class="expand-header flex space-between align-center">
                 <span class="emailTitle">{{email.subject}}</span>
                 <div class="expand-actions">
-                    <button @click="removeEmail"><img src="./imgs/email-icons/trash.png" alt="Trash icon"></button>
-                   <button>
+                    <button @click="removeEmail" title="Remove Email"><img src="./imgs/email-icons/trash.png" alt="Trash icon"></button>
+                   <button title="Read Full Email">
                     <router-link :to="'/email/' + email.id">
                         <img src="./imgs/email-icons/expand.png" alt="Expand icon">
                     </router-link>
