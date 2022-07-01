@@ -5,7 +5,7 @@ export default {
     props: ['unRed'],
     template: `
         <section class="email-side-filter">
-            <div @click="pushRouter" class="add-compose-action">
+            <div @click="pushRouter" class="add-compose-action" title="New Email">
                 <span class="plus"></span>
                 <span class="compose">Compose</span> 
             </div>

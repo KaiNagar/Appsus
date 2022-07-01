@@ -41,20 +41,18 @@
 
 
 .email-list::-webkit-scrollbar {
-    background: rgb(215, 217, 238);
-    border-radius: 2rem;
+    background: rgba(128, 128, 128, 0.121);
     box-shadow: inset 0 0 5px grey;
 }
 
 .email-list::-webkit-scrollbar-thumb {
-    background: rgb(69, 89, 240);
-    border-radius: 2rem;
-    box-shadow: inset 0 0 5px grey;
+background-color: rgba(128, 128, 128, 0.498);   
+ box-shadow: inset 0 0 5px grey;
 
 }
 
 .email-list::-webkit-scrollbar-thumb:hover {
-    background: rgba(69, 89, 240, 0.351);
+    background: rgba(255, 255, 255, 0.645);
 }
 
 .email-list table {
@@ -76,9 +74,8 @@
 .titles {
     background-color: grey;
     display: grid;
-    grid-template-columns: 7.5% 12.5% 27% 47% 6%;
+    grid-template-columns: 5% 10% 25% 40% 5% 10% 5%;
     align-items: center;
-    /* justify-items: center; */
     padding: 2px;
     margin: 0;
     width: 100%;
@@ -123,10 +120,17 @@ td:last-of-type {
     text-align: right;
 }
 
+.starImp {
+    color: grey;
+}
+
+.starImp-active {
+    color: gold;
+}
+
 .starImp:hover {
     cursor: pointer;
-    background-color: rgba(128, 128, 128, 0.057);
-    border-radius: 50%;
+    color: gold;
 }
 
 textarea:focus,
@@ -283,6 +287,7 @@ input:focus {
 .email-red {
     background-color: rgba(128, 128, 128, 0.4);
 }
+
 
 
 

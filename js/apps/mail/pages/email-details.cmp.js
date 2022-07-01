@@ -8,7 +8,7 @@ export default {
             <div class="details-info flex column">
                 <div class="expand-actions">
                     <button @click="removeEmail"><img src="./imgs/email-icons/trash.png" alt="Trash icon"></button>
-                    <button @click="back"><img src="./imgs/email-icons/back.png" alt="Back icon"></button>
+                    <button @click="back" title="Back To List"><img src="./imgs/email-icons/back.png" alt="Back icon"></button>
                 </div>
                 <div class="details-data flex column">
                     <span class="details-subject">{{email.subject}}</span>
@@ -22,8 +22,8 @@ export default {
                     </div>
                     <div class="details-body">{{email.body}}</div>
                 </div>
-                    <router-link class="next-email" :to="'/email/' + email.id">Next Email</router-link>
-                    <router-link class="prev-email" :to="'/email/' + email.id">Prev Email</router-link>
+                    <router-link class="next-email" :to="'/email/' + email.id" title="Read Next Email">Next Email</router-link>
+                    <router-link class="prev-email" :to="'/email/' + email.id" title="Read Prev Email">Prev Email</router-link>
             </div>
 
 
