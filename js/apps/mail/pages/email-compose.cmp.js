@@ -3,30 +3,36 @@ import { emailService } from "../services/email-service.js";
 import { router } from "../../../router.js";
 
 export default {
-    props: [],
     template: `
-    <section ref="compose" class="compose-container">
-        <form @submit.prevent="sendEmail">
-            <div @click="hideCompose" class="compose-header flex space-between align-center">
-                <h3 >New Message</h3>
-                <div  class="compose-actions flex space-between align-center">
-                    <span class="minimaized">➖</span>
-                    <router-link class="exit-compose" to="/email" @click="exitCompose">✖</router-link>
+        <section ref="compose" class="compose-container">
+            <form @submit.prevent="sendEmail">
+                <div class="compose-header flex space-between align-center"  
+                @click="hideCompose" >
+                    <h3 >New Message</h3>
+                    <div  class="compose-actions flex space-between align-center">
+                        <span class="minimaized">➖</span>
+                        <router-link class="exit-compose" to="/email" 
+                        @click="exitCompose">✖</router-link>
+                    </div>
                 </div>
-            </div>
-            <div class="compose-form flex column">
-            <input required v-model="newEmail.userName" placeholder="Name:" type="text">
-            <input required v-model="newEmail.to" placeholder="To:" type="email">
-            <input required v-model="newEmail.subject" placeholder="Subject:" type="text">
-            <textarea required v-model="newEmail.body" placeholder="Enter message here" cols="30" rows="10"></textarea>
-        </div>
-        <div class="btns-actions">
-            <button>Send</button>
-        </div>
-    </form>
-    </section>
+                <div class="compose-form flex column">
+                    <input required v-model="newEmail.userName" 
+                    placeholder="Name:" type="text">
+                    <input required v-model="newEmail.to" 
+                    placeholder="To:" type="email">
+                    <input required v-model="newEmail.subject" 
+                    placeholder="Subject:" type="text">
+                    <textarea required v-model="newEmail.body" 
+                    placeholder="Enter message here" cols="30" rows="10">
+                    </textarea>
+                </div>
+                <div class="btns-actions">
+                    <button>Send</button>
+                </div>
+            </form>
+        </section>
     `,
-    components: {},
+
     data() {
         return {
             userEmail: null,
@@ -45,6 +51,7 @@ export default {
             isX: false,
         };
     },
+
     methods: {
         sendEmail() {
             console.log(this.newEmail);
@@ -64,7 +71,7 @@ export default {
             clearInterval(this.draftInterval)
         }
     },
-    computed: {},
+
     created() {
         emailService.getUser().then(user => {
             this.userEmail = user.email
@@ -75,5 +82,5 @@ export default {
                 emailService.saveEmailDraft(this.newEmail)
             }, 5000);
     },
-    unmounted() { },
+
 };

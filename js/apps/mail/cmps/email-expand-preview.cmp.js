@@ -6,25 +6,32 @@ export default {
             <div class="expand-header flex space-between align-center">
                 <span class="emailTitle">{{email.subject}}</span>
                 <div class="expand-actions">
-                    <button @click="removeEmail" title="Remove Email"><img src="./imgs/email-icons/trash.png" alt="Trash icon"></button>
-                   <button title="Read Full Email">
-                    <router-link :to="'/email/' + email.id">
-                        <img src="./imgs/email-icons/expand.png" alt="Expand icon">
-                    </router-link>
-                </button>
+                    <button @click="removeEmail" 
+                    title="Remove Email">
+                        <img src="./imgs/email-icons/trash.png" alt="Trash icon">
+                    </button>
+                    <button title="Read Full Email">
+                        <router-link :to="'/email/' + email.id">
+                            <img src="./imgs/email-icons/expand.png" alt="Expand icon">
+                        </router-link>
+                    </button>
                 </div>
             </div>
-            <span class="userInfo">{{email.userName}} <span class="userMail">{{emailFormat}}</span> </span>
+            <span class="userInfo">{{email.userName}} 
+                <span class="userMail">{{emailFormat}}</span> 
+            </span>
             <p class="email-body-expand">{{email.body}}</p>
         </section>   
  `,
+
     props: ['email'],
-    components: {},
+
     data() {
         return {
             type: null
         };
     },
+
     methods: {
         removeEmail() {
             Swal.fire({
@@ -51,15 +58,16 @@ export default {
             console.log(this.email.id);
         }
     },
+
     computed: {
         emailFormat() {
             if (this.email.to) return `<${this.email.to}>`
             else if (this.email.from) return `<${this.email.from}>`
         }
     },
+
     created() {
         if (this.email.to) this.type = 'sent'
         else if (this.email.from) this.type = 'recived'
     },
-    unmounted() { },
 };

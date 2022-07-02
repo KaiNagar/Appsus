@@ -15,13 +15,20 @@
 @import './notes/notes-cmps/note-todo.css';
 @import './notes/notes-cmps/note-txt.css';
 
+@import './emails/cmps/email-preview.css';
+@import './emails/cmps/email-side-filter.css';
+@import './emails/cmps/email-expand-preview..css';
+@import './emails/cmps/email-list.css';
+@import './emails/cmps/email-top-filter.css';
 
 @import './books/views/book-app.css';
 @import './books/views/book-details.css';
 @import './books/views/book-filter.css';
 
-@import './emails/cmps/email-preview.css';
-@import './emails/cmps/email-side-filter.css';
+@import './emails/views/email-compose.css';
+@import './emails/views/email-app.css';
+@import './emails/views/email-details.css';
+
 
 @import './components/app-footer.css';
 @import './components//user-msg.css';

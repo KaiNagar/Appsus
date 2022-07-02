@@ -12,22 +12,231 @@ export const emailService = {
     removeEmail,
     formattedTime,
     getEmailById,
-    // getNextId,
 }
 
+// hello there and welcome to the email service!
+//this file is very long just cuz i build a big data base for the project
+//the data base is located at the bottom of the file
+//lets start the tour(if you are even visiting here...)
 
+//some local storage keys
 const INBOX_MAIL_KEY = 'inboxM'
 const SENT_MAIL_KEY = 'sentM'
 const DRAFT_MAIL_KEY = 'draftM'
 const DELETED_MAIL_KEY = 'delM'
 const USER_KEY = 'userK'
-
-
 const loggedInUser = {
     email: 'tachoka@services.com',
     fullName: 'Izuku Midoriya'
 }
 
+//settting the app with the database if there is no data from th user to see
+_setData()
+
+function _setData() {
+    storageService.query(SENT_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(SENT_MAIL_KEY, sentEmailsData)
+        }
+    })
+    storageService.query(USER_KEY).then(settings => {
+        if (!settings || !settings.length) {
+            utilService.saveToStorage(USER_KEY, loggedInUser)
+        }
+    })
+    storageService.query(INBOX_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(INBOX_MAIL_KEY, recivedEmailsData)
+        }
+    })
+    storageService.query(DRAFT_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(DRAFT_MAIL_KEY, draftsEmailsData)
+        }
+    })
+    storageService.query(DELETED_MAIL_KEY).then(emails => {
+        if (!emails || !emails.length) {
+            utilService.saveToStorage(DELETED_MAIL_KEY, deletedEmailsData)
+        }
+    })
+}
+
+//getting email by its id
+function getEmailById(id) {
+    return getAllEmails()
+        .then(allEmails => {
+            const currEmail = allEmails.find(email => email.id === id)
+            return currEmail
+        })
+}
+
+//setting the formatted time when getting the timestamp of the email
+function formattedTime(timeStamp) {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Novr", "Dec"];
+    let now = Date.now()
+    let diff = now - timeStamp
+    let day = 1000 * 60 * 60 * 24
+    let clock = new Date(timeStamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    let date = `${new Date(timeStamp).getDate()} ${monthNames[new Date(timeStamp).getMonth()]}`
+    let year = new Date(timeStamp).getFullYear().toString().slice(-2)
+    if (diff < day) return clock
+    else if (diff < day * 365) return date
+    else if (diff > day * 365) return `${date},${year}`
+}
+
+//adding an email to the correct folder
+//if address is user email, it goes to inbox
+//if not goes to sent folder
+function addEmail(email) {
+    if (email.to === loggedInUser.email) {
+        storageService.query(INBOX_MAIL_KEY).then(emails => {
+            emails.unshift(email)
+            utilService.saveToStorage(INBOX_MAIL_KEY, emails)
+
+        })
+    } else {
+        storageService.query(SENT_MAIL_KEY).then(emails => {
+            emails.unshift(email)
+            utilService.saveToStorage(SENT_MAIL_KEY, emails)
+        })
+    }
+}
+
+//removing an email
+//if in trash folder removing for good
+//if not removing to trash folder
+function removeEmail(emailType, delEmail) {
+    let key
+    if (emailType === 'sent') key = SENT_MAIL_KEY
+    else if (!emailType) key = DRAFT_MAIL_KEY
+    else key = INBOX_MAIL_KEY
+    console.log(key, delEmail);
+    if (!emailType) {
+        storageService.query(DELETED_MAIL_KEY)
+            .then(emails => {
+                emails.unshift(delEmail)
+                utilService.saveToStorage(DELETED_MAIL_KEY, emails)
+                storageService.remove(key, delEmail.id)
+            })
+    } else {
+        storageService.query(DELETED_MAIL_KEY)
+            .then(emails => {
+                let inDel = emails.some(email => email.id === delEmail.id)
+                if (inDel) {
+                    storageService.remove(DELETED_MAIL_KEY, delEmail.id)
+                }
+                emails.unshift(delEmail)
+                utilService.saveToStorage(DELETED_MAIL_KEY, emails)
+                storageService.remove(key, delEmail.id)
+            })
+    }
+}
+
+//updating an email in the currect folder he is in
+function updateEmail(emailType, updatedEmail) {
+    storageService.query(DELETED_MAIL_KEY)
+        .then(emails => {
+            let inDel = emails.some(email => email.id === updatedEmail.id)
+            if (inDel) {
+                storageService.put(DELETED_MAIL_KEY, updatedEmail)
+                return
+            }
+            storageService.query(DRAFT_MAIL_KEY)
+                .then(emails => {
+                    let inDrafts = emails.some(email => email.id === updatedEmail.id)
+                    if (inDrafts) {
+                        storageService.put(DRAFT_MAIL_KEY, updatedEmail)
+                        return
+                    } else {
+                        let key
+                        if (emailType === 'sent') key = SENT_MAIL_KEY
+                        else key = INBOX_MAIL_KEY
+                        storageService.put(key, updatedEmail)
+                    }
+                })
+        })
+}
+
+//get user settings
+function getUser() {
+    return storageService.query(USER_KEY)
+}
+
+//get all inbox emails
+function getInboxEmails() {
+    return storageService.query(INBOX_MAIL_KEY)
+}
+
+//get all sent emails
+function getSentEmails() {
+    return storageService.query(SENT_MAIL_KEY)
+}
+
+//get all starred emails
+function getStarredEmails() {
+    return getInboxEmails().then(emails => {
+        let sortedMails = []
+        sortedMails.push(...emails.filter(email => email.isStarred === true))
+        return getSentEmails().then(emails => {
+            sortedMails.push(...emails.filter(email => email.isStarred === true))
+            return sortedMails
+        })
+    })
+}
+
+//get all drafts emails
+function getDraftsEmails() {
+    return storageService.query(DRAFT_MAIL_KEY)
+}
+
+//get all deleted emails
+function getDeletedEmails() {
+    return storageService.query(DELETED_MAIL_KEY)
+}
+
+//get all emails in all folders
+function getAllEmails() {
+    return storageService.query(SENT_MAIL_KEY)
+        .then(emails => {
+            let allMail = []
+            emails.forEach(email => allMail.push(email))
+            return storageService.query(INBOX_MAIL_KEY)
+                .then(emails => {
+                    emails.forEach(email => allMail.push(email))
+                    return storageService.query(DELETED_MAIL_KEY)
+                        .then(emails => {
+                            emails.forEach(email => allMail.push(email))
+                            return storageService.query(DRAFT_MAIL_KEY)
+                                .then(emails => {
+                                    emails.forEach(email => allMail.push(email))
+                                    return allMail
+                                })
+                        })
+                })
+        })
+}
+
+//saving a draft from open compose to the drafts
+function saveEmailDraft(newEmail) {
+    storageService.query(DRAFT_MAIL_KEY).then(emails => {
+        if (emails.some(email => email.id === newEmail.id)) {
+            console.log(newEmail);
+            storageService.put(DRAFT_MAIL_KEY, newEmail)
+        } else storageService.post(DRAFT_MAIL_KEY, newEmail)
+    })
+}
+
+//set emails based of folder picked by user
+function setEmails(filterType) {
+    if (filterType === 'inbox') return getInboxEmails()
+    if (filterType === 'sent') return getSentEmails()
+    if (filterType === 'starred') return getStarredEmails()
+    if (filterType === 'drafts') return getDraftsEmails()
+    if (filterType === 'trash') return getDeletedEmails()
+}
+
+// Data Base
 const recivedEmailsData = [
     {
         id: utilService.makeId(),
@@ -52,7 +261,7 @@ const recivedEmailsData = [
         i ask you to ban here from your store for ever!!',
         isRead: false,
         isStarred: true,
-        sentAt: Date.now()-10000,
+        sentAt: Date.now() - 10000,
         from: 'drdan342@kmail.com',
         userName: 'Dan'
     },
@@ -65,7 +274,7 @@ const recivedEmailsData = [
         also you can take the old dirt.... but i wouldnt recommend that....',
         isRead: false,
         isStarred: false,
-        sentAt: Date.now()-(1000*60),
+        sentAt: Date.now() - (1000 * 60),
         from: 'aayesaa@kmail.com',
         userName: 'Din'
     },
@@ -78,7 +287,7 @@ const recivedEmailsData = [
         thank you very much for once again, amazing products and amazing quality!',
         isRead: false,
         isStarred: false,
-        sentAt: Date.now()-(1000*60*6),
+        sentAt: Date.now() - (1000 * 60 * 6),
         from: 'nirkpolake@kmail.com',
         userName: 'Nir'
     },
@@ -130,7 +339,7 @@ const recivedEmailsData = [
         also you can take the old dirt.... but i wouldnt recommend that....',
         isRead: false,
         isStarred: false,
-        sentAt: Date.now()-(1000*60*6*20),
+        sentAt: Date.now() - (1000 * 60 * 6 * 20),
         from: 'aayesaa@kmail.com',
         userName: 'Din'
     },
@@ -396,264 +605,3 @@ const deletedEmailsData = [
         userName: 'Tachoka@Help'
     },
 ]
-
-_setData()
-function _setData() {
-    storageService.query(SENT_MAIL_KEY).then(emails => {
-        if (!emails || !emails.length) {
-            utilService.saveToStorage(SENT_MAIL_KEY, sentEmailsData)
-        }
-    })
-    storageService.query(USER_KEY).then(settings => {
-        if (!settings || !settings.length) {
-            utilService.saveToStorage(USER_KEY, loggedInUser)
-        }
-    })
-    storageService.query(INBOX_MAIL_KEY).then(emails => {
-        if (!emails || !emails.length) {
-            utilService.saveToStorage(INBOX_MAIL_KEY, recivedEmailsData)
-        }
-    })
-    storageService.query(DRAFT_MAIL_KEY).then(emails => {
-        if (!emails || !emails.length) {
-            utilService.saveToStorage(DRAFT_MAIL_KEY, draftsEmailsData)
-        }
-    })
-    storageService.query(DELETED_MAIL_KEY).then(emails => {
-        if (!emails || !emails.length) {
-            utilService.saveToStorage(DELETED_MAIL_KEY, deletedEmailsData)
-        }
-    })
-}
-
-function getEmailById(id) {
-    return getAllEmails()
-        .then(allEmails => {
-            const currEmail = allEmails.find(email => email.id === id)
-            return currEmail
-        })
-}
-
-function formattedTime(timeStamp) {
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Novr", "Dec"];
-    let now = Date.now()
-    let diff = now - timeStamp
-    let day = 1000 * 60 * 60 * 24
-    let clock = new Date(timeStamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    let date = `${new Date(timeStamp).getDate()} ${monthNames[new Date(timeStamp).getMonth()]}`
-    let year = new Date(timeStamp).getFullYear().toString().slice(-2)
-    if (diff < day) return clock
-    else if (diff < day * 365) return date
-    else if (diff > day * 365) return `${date},${year}`
-}
-
-
-
-function addEmail(email) {
-    if (email.to === loggedInUser.email) {
-        storageService.query(INBOX_MAIL_KEY).then(emails => {
-            emails.unshift(email)
-            utilService.saveToStorage(INBOX_MAIL_KEY, emails)
-
-        })
-    } else {
-        storageService.query(SENT_MAIL_KEY).then(emails => {
-            emails.unshift(email)
-            utilService.saveToStorage(SENT_MAIL_KEY, emails)
-        })
-    }
-}
-
-function removeEmail(emailType, delEmail) {
-    let key
-    if (emailType === 'sent') key = SENT_MAIL_KEY
-    else if (!emailType) key = DRAFT_MAIL_KEY
-    else key = INBOX_MAIL_KEY
-    console.log(key, delEmail);
-    if (!emailType) {
-        storageService.query(DELETED_MAIL_KEY)
-            .then(emails => {
-                emails.unshift(delEmail)
-                utilService.saveToStorage(DELETED_MAIL_KEY, emails)
-                storageService.remove(key, delEmail.id)
-            })
-    } else {
-        storageService.query(DELETED_MAIL_KEY)
-            .then(emails => {
-                let inDel = emails.some(email => email.id === delEmail.id)
-                if (inDel) {
-                    storageService.remove(DELETED_MAIL_KEY, delEmail.id)
-                }
-                emails.unshift(delEmail)
-                utilService.saveToStorage(DELETED_MAIL_KEY, emails)
-                storageService.remove(key, delEmail.id)
-            })
-    }
-}
-
-function updateEmail(emailType, updatedEmail) {
-    storageService.query(DELETED_MAIL_KEY)
-        .then(emails => {
-            let inDel = emails.some(email => email.id === updatedEmail.id)
-            if (inDel) {
-                storageService.put(DELETED_MAIL_KEY, updatedEmail)
-                return
-            }
-            storageService.query(DRAFT_MAIL_KEY)
-                .then(emails => {
-                    let inDrafts = emails.some(email => email.id === updatedEmail.id)
-                    if (inDrafts) {
-                        storageService.put(DRAFT_MAIL_KEY, updatedEmail)
-                        return
-                    } else {
-                        let key
-                        if (emailType === 'sent') key = SENT_MAIL_KEY
-                        else key = INBOX_MAIL_KEY
-                        storageService.put(key, updatedEmail)
-                    }
-                })
-
-        })
-}
-
-function getUser() {
-    return storageService.query(USER_KEY)
-}
-
-function getInboxEmails() {
-    return storageService.query(INBOX_MAIL_KEY)
-}
-
-function getSentEmails() {
-    return storageService.query(SENT_MAIL_KEY)
-}
-
-function getStarredEmails() {
-    return getInboxEmails().then(emails => {
-        let sortedMails = []
-        sortedMails.push(...emails.filter(email => email.isStarred === true))
-        return getSentEmails().then(emails => {
-            sortedMails.push(...emails.filter(email => email.isStarred === true))
-            return sortedMails
-        })
-    })
-}
-
-function getDraftsEmails() {
-    return storageService.query(DRAFT_MAIL_KEY)
-}
-
-function getDeletedEmails() {
-    return storageService.query(DELETED_MAIL_KEY)
-}
-
-function getAllEmails() {
-    return storageService.query(SENT_MAIL_KEY)
-        .then(emails => {
-            let allMail = []
-            emails.forEach(email => allMail.push(email))
-            return storageService.query(INBOX_MAIL_KEY)
-                .then(emails => {
-                    emails.forEach(email => allMail.push(email))
-                    return storageService.query(DELETED_MAIL_KEY)
-                        .then(emails => {
-                            emails.forEach(email => allMail.push(email))
-                            return storageService.query(DRAFT_MAIL_KEY)
-                                .then(emails => {
-                                    emails.forEach(email => allMail.push(email))
-                                    return allMail
-                                })
-                        })
-                })
-
-        })
-}
-
-// function getNextId(currEmail) {
-//     return storageService.query(DELETED_MAIL_KEY)
-//         .then(emails => {
-//             let isInDel = emails.some(email => email.id === currEmail.id)
-//             if (isInDel) {
-//                 const idx = emails.findIndex(emails => emails === currEmail.id)
-//                 return (idx > 0) ? emails[idx - 1].id : emails[emails.length - 1].id
-//             }
-//             return storageService.query(DRAFT_MAIL_KEY)
-//                 .then(emails => {
-//                     let isInDrafts = emails.some(email => email.id === currEmail.id)
-//                     if (isInDrafts) {
-//                         const idx = emails.findIndex(emails => emails.id === currEmail.id)
-//                         return (idx > 0) ? emails[idx - 1].id : emails[emails.length - 1].id
-//                     }
-//                     return getStarredEmails()
-//                         .then(emails => {
-//                             let isInStarred = emails.some(email => email.id === currEmail.id)
-//                             if (isInStarred) {
-//                                 const idx = emails.findIndex(emails => emails === currEmail.id)
-//                                 return (idx > 0) ? emails[idx - 1].id : emails[emails.length - 1].id
-//                             }
-//                             return storageService.query(SENT_MAIL_KEY)
-//                                 .then(emails => {
-//                                     let isInSent = emails.some(email => email.id === currEmail.id)
-//                                     if (isInSent) {
-//                                         const idx = emails.findIndex(emails => emails.id === currEmail.id)
-//                                         return (idx > 0) ? emails[idx - 1].id : emails[emails.length - 1].id
-//                                     }
-//                                     return storageService.query(INBOX_MAIL_KEY)
-//                                         .then(emails => {
-//                                             let isInInbox = emails.some(email => email.id === currEmail.id)
-//                                             if (isInInbox) {
-//                                                 const idx = emails.findIndex(emails => emails.id === currEmail.id)
-//                                                 return (idx > 0) ? emails[idx - 1].id : emails[emails.length - 1].id
-//                                             }
-//                                         })
-//                                 })
-//                         })
-//                 })
-
-//             // storageService.query(DRAFT_MAIL_KEY)
-//             //     .then(emails => {
-//             //         let isInDrafts = emails.some(email => email.id === currEmail.id)
-//             //         if (isInDrafts) {
-//             //             const idx = emails.findIndex(emails => emails.id === currEmail.id)
-//             //             return (idx < emails.length - 1) ? emails[idx + 1].id : emails[0].id
-//             //         }
-//             //     })
-
-//         })
-// }
-// getEmailById('teaDf').then(email=>{
-//     isInFolder(SENT_MAIL_KEY, email).then(res => console.log(res))
-
-// })
-// function isInFolder(key, checkEmail) {
-//     return storageService.query(key)
-//         .then(emails => {
-//             console.log(checkEmail);
-//             let f = emails.some(email => {
-//                 console.log(email);
-//                 email.id === checkEmail.id
-               
-//             })
-//             console.log(f);
-//         })
-// }
-
-
-function saveEmailDraft(newEmail) {
-    storageService.query(DRAFT_MAIL_KEY).then(emails => {
-        if (emails.some(email => email.id === newEmail.id)) {
-            console.log(newEmail);
-            storageService.put(DRAFT_MAIL_KEY, newEmail)
-        } else storageService.post(DRAFT_MAIL_KEY, newEmail)
-    })
-}
-
-function setEmails(filterType) {
-    if (filterType === 'inbox') return getInboxEmails()
-    if (filterType === 'sent') return getSentEmails()
-    if (filterType === 'starred') return getStarredEmails
-        ()
-    if (filterType === 'drafts') return getDraftsEmails()
-    if (filterType === 'trash') return getDeletedEmails()
-}

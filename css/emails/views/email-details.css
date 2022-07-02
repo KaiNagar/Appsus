@@ -1,0 +1,86 @@
+.email-details-full {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/001/916/683/non_2x/beautiful-blue-sky-background-free-photo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+    box-shadow: inset 0px 3px 10px #000;
+}
+
+.details-info {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.90);
+    max-width: 90%;
+    height: 90%;
+    margin: auto;
+    box-shadow: 4px 4px 10px 0px #000;
+    border-radius: 1rem;
+    bottom: -5%;
+}
+
+.details-info span {
+    font-size: 1.5rem;
+}
+
+.formatted-data {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+    border-top: 1px solid rgba(128, 128, 128, 0.25);
+    padding-left: 4rem;
+}
+
+.details-data .userName {
+    font-size: 2rem;
+    margin: 2rem;
+}
+
+.details-info span.details-subject {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem;
+    border-top: 1px solid rgba(128, 128, 128, 0.25);
+    padding-top: 1rem;
+    padding-left: 4.8rem;
+}
+
+.details-body {
+    max-width: 85%;
+    margin: auto;
+    font-size: 2rem;
+    line-height: 3rem;
+}
+
+.email-paging {
+    max-width: 40%;
+    align-items: center;
+}
+
+.next-email,
+.prev-email {
+    position: absolute;
+    text-decoration: none;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 2rem;
+    background-color: rgb(107, 151, 169);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.next-email:hover,
+.prev-email:hover {
+    background-color: rgba(107, 151, 169, 0.452);
+}
+
+.next-email {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.prev-email {
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.email-settings {
+    width: 500px;
+    font-weight: bold;
+}
