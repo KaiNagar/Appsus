@@ -8,7 +8,7 @@ export default {
                 ref="updatedTxt"
                 @input="updateNote"
                 placeholder="Dont forget to...">
-                Save your thoughts, wherever you are
+                {{info.txt}}
             </textarea>
             </section>
             `,

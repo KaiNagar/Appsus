@@ -13,7 +13,7 @@
     padding: 6px;
     background-color: rgba(255, 255, 255, 0.172);
     border-radius: 10px;
-    width: 35em;
+    width: 41em;
     border: 1px solid rgb(82, 82, 82);
 }
 
@@ -27,11 +27,26 @@
 
 .add-note-form span:hover {
     color: black;
-    cursor: pointer;
 }
 
 .add-note-form span {
     color: rgb(214, 211, 211);
-
     margin: 1rem;
+    cursor: pointer;
+}
+
+.add-note-form button:hover {
+    color: black;
+}
+
+.add-note-form button {
+    background-color: transparent;
+    border: 1px transparent;
+    text-decoration: underline;
+    font-size: 1.2em;
+    color: rgb(214, 211, 211);
+}
+
+.active i {
+    color: black;
 }

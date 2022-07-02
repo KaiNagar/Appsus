@@ -2,10 +2,10 @@
     {
         "id": "n101",
         "type": "note-txt",
-        "title": "Welcome to Keep",
+        "title": "Welcome to Keep ♥",
         "isPinned": true,
         "info": {
-            "txt": "Fullstack Me Baby!"
+            "txt": "Share your thoughts, So you wont forget!"
         },
         "style": {
             "backgroundColor": "#dbf4a6"
@@ -13,21 +13,37 @@
     },
     {
         "id": "n102",
-        "type": "note-img",
+        "type": "note-todos",
+        "title": "Things I Need Todo",
         "isPinned": false,
-        "title": "Bobi and Me",
         "info": {
-            "url": "https://source.unsplash.com/random/200x200?sig=5"
+            "todos": [
+                {
+                    "isDone": true,
+                    "txt": "Sprint 3",
+                    "doneAt": null
+                },
+                {
+                    "isDone": false,
+                    "txt": "Take the dog for a walk",
+                    "doneAt": 187111111
+                },
+                {
+                    "isDone": false,
+                    "txt": "Push and Pull",
+                    "doneAt": 187111111
+                }
+            ]
         },
         "style": {
-            "backgroundColor": "#c8e9eb"
+            "backgroundColor": "#f9dca5"
         }
     },
     {
         "id": "n103",
         "type": "note-img",
         "isPinned": false,
-        "title": "Bobi and Me",
+        "title": "I love my images",
         "info": {
             "url": "https://source.unsplash.com/random/200x200?sig=6"
         },
@@ -37,31 +53,41 @@
     },
     {
         "id": "n104",
-        "type": "note-video",
-        "title": "Video",
+        "type": "note-img",
+        "title": "Give me title",
         "isPinned": false,
         "info": {
-            "videoId": "tgbNymZ7vqY"
+            "gifUrl": ""
         },
         "style": {
-            "backgroundColor": "#ffa5a5"
+            "backgroundColor": "#dbf4a6"
         }
     },
     {
         "id": "n105",
         "type": "note-todos",
-        "title": "Get my stuff together",
+        "title": "Groceries",
         "isPinned": false,
         "info": {
             "todos": [
                 {
-                    "isDone": false,
-                    "txt": "Driving liscence",
+                    "isDone": true,
+                    "txt": "Milk",
                     "doneAt": null
                 },
                 {
                     "isDone": false,
-                    "txt": "Coding power",
+                    "txt": "Tomato",
+                    "doneAt": 187111111
+                },
+                {
+                    "isDone": false,
+                    "txt": "Bread",
+                    "doneAt": 187111111
+                },
+                {
+                    "isDone": false,
+                    "txt": "chocolate",
                     "doneAt": 187111111
                 }
             ]
@@ -72,37 +98,26 @@
     },
     {
         "id": "n106",
-        "type": "note-todos",
-        "title": "Get my stuff together",
+        "type": "note-img",
         "isPinned": false,
+        "title": "My image",
         "info": {
-            "todos": [
-                {
-                    "isDone": true,
-                    "txt": "Driving liscence",
-                    "doneAt": null
-                },
-                {
-                    "isDone": false,
-                    "txt": "Coding power",
-                    "doneAt": 187111111
-                }
-            ]
+            "url": "https://source.unsplash.com/random/200x200?sig=5"
         },
         "style": {
-            "backgroundColor": "#f9dca5"
+            "backgroundColor": "#c8e9eb"
         }
     },
     {
         "id": "n107",
-        "type": "note-gif",
-        "title": "My Fillings",
+        "type": "note-video",
+        "title": "Youtube Video",
         "isPinned": false,
         "info": {
-            "gifUrl": "imgs/gifs/hi.gif"
+            "videoId": "tgbNymZ7vqY"
         },
         "style": {
-            "backgroundColor": "#dbf4a6"
+            "backgroundColor": "#ffa5a5"
         }
     }
 ]

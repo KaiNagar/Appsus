@@ -13,10 +13,6 @@
 
 }
 
-.action-btns .fa-solid:hover {
-    color: black;
-}
-
 .action-btns button {
     background-color: transparent;
     border: transparent;

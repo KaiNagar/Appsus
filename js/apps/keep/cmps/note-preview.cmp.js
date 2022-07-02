@@ -7,17 +7,16 @@ import { noteService } from "../services/note-service.js"
 
 
 export default {
-    props: ['note'],
     template: `
     <article :style="bgc">
         <div class="note-title">
-            <h3 v-if="!isEditTitle" 
-             @click="onEditTitle">{{note.title}}</h3>
-            <input v-else 
+            <h3 v-show="!isEditTitle" 
+            @click="onEditTitle">{{note.title}}</h3>
+            <input v-show="isEditTitle"
             ref="titleInput"
             type="text" 
             :value="note.title"
-             @input="updateTitle($event.target.value)" 
+            @input="updateTitle($event.target.value)" 
             @keyup.enter="isEditTitle=false"
             @blur="isEditTitle=false"
             />
@@ -27,15 +26,17 @@ export default {
         :info="note.info"
         @updateNoteInfo="updateNoteInfo"
         >
-        </component>
-        <note-actions class="note-actions"
-            :note="note"
-            @removeNote="$emit('remove-note',$event)"
-            @changeBgColor="$emit('change-bg-color',$event)"
-            @pinnedNote="$emit('pinned-note', $event)"
-        />
-    </article>
+    </component>
+    <note-actions class="note-actions"
+    :note="note"
+    @removeNote="$emit('remove-note',$event)"
+    @changeBgColor="$emit('change-bg-color',$event)"
+    @pinnedNote="$emit('pinned-note', $event)"
+    @duplicateNote="$emit('duplicate-note', $event)"
+    />
+</article>
 `,
+    props: ['note'],
     name: 'note-preview',
     data() {
         return {
@@ -58,15 +59,16 @@ export default {
             this.note.info = info
             noteService.save(this.note)
         },
+
         updateTitle(newTitle) {
             this.note.title = newTitle
             noteService.save(this.note)
         },
+
         onEditTitle() {
             this.isEditTitle = true
-            this.$nextTick(() => {
-                this.$refs.titleInput.focus()
-            })
+            this.$refs.titleInput.focus()
+            noteService.save(this.note)
         }
     },
 
@@ -75,5 +77,4 @@ export default {
             return { backgroundColor: this.note?.style.backgroundColor }
         }
     },
-    unmounted() { },
 }

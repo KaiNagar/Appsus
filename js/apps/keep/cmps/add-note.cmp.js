@@ -1,86 +1,99 @@
-import { noteService } from "../services/note-service.js"
 
 export default {
     template: `
     <section class="add-note">
         <form @submit.prevent="createNote"
                 class="add-note-form">
-                <input ref="addNoteInput"
+                <input
+                v-model="value"
                 :placeholder="placeholder"
                 type="text"
                />
             <span id="text" 
+                :class="{active:noteType === 'note-txt'}"
                 @click="setNoteType('note-txt')">
                 <i class="fa-solid fa-t"></i>
             </span>
             <span id="img" 
-                @click="setNoteType('note-img')">
+                @click="setNoteType('note-img')"
+                :class="{active:noteType === 'note-img'}"
+                type=file>
                 <i class="fa-solid fa-image"></i>
             </span>
-            <input ref="userImage" @click="setNoteType('note-img',$event)" type="file">
+
             <span id="todo" 
-                @click="setNoteType('note-todos')">
+                @click="setNoteType('note-todos')"
+                :class="{active:noteType === 'note-todos'}">
                 <i class="fa-solid fa-list"></i>
             </span>
-            <span @click="newNote.type='note-video'" id="video">video</span>
+
+            <span id="video"
+            @click="setNoteType('note-video')" 
+            type=file
+            :class="{active:noteType === 'note-video'}">
+            <i class="fa-solid fa-video"></i>
+            </span>
+
             <button>
-                <i class="fa-solid fa-check"></i>
+                Add
             </button>
         </form>
     </section>
 `,
     data() {
         return {
-            newNote: {
-                type: '',
-                isPinned: false,
-                info: null,
-                backgroundColor: 'white'
-            },
+            noteType: 'note-txt',
+            value: ''
         }
     },
-    created() { },
     methods: {
         setNoteType(type) {
-            let input = this.$refs.addNoteInput
-            this.newNote.type = type
+            this.noteType = type
         },
 
         createNote() {
-            let note = this.newNote
-            let noteType = this.newNote.type
+            const { value } = this
+            console.log(value)
+            const info = {}
 
-            if (!value) return
-            let title = value
-            if (note.type === 'note-txt') {
-                note.info = {
-                    title,
-                    txt: info
-                }
-            } else if (note.type === 'note-img') {
-                let userImage = this.$refs.userImage.value
-                console.log(userImage);
-                note.info = {
-                    title: title,
-                    url: info.trim()
-                }
+            if (this.noteType === 'note-txt') {
+                info.txt = value
             }
-            else if (note.type === 'note-todos') {
-                note.info = {
-                    title: title,
-                    todos: info
-                }
+            else if (this.noteType === 'note-img') {
+                info.url = value.trim()
             }
-            this.$refs.addNoteInput.value = ''
-            this.$emit('newNote', note)
+            else if (this.noteType === 'note-video') {
+                info.videoId = value.trim()
+            }
+
+            else if (this.noteType === 'note-todos') {
+                info.todos = value.split(',').map(txt => ({
+                    txt,
+                    isDone: false
+                }))
+            }
+            const newNote = {
+                info,
+                type: this.noteType
+            }
+            this.$emit('newNote', newNote)
+            this.value = ''
         }
     },
     computed: {
         placeholder() {
-            const { type } = this.newNote
-            if (type === 'note-txt') return 'Enter text title'
-            if (type === 'note-img') return 'Add a image'
-            if (type === 'note-todos') return 'Enter title for your todos'
+            const type = this.noteType
+            switch (type) {
+                case 'note-txt':
+                    return 'Enter text'
+                case 'note-img':
+                    return 'Enter image url'
+                case 'note-video':
+                    return 'Enter youtube video url'
+                case 'note-todos':
+                    return 'Enter todo followed by a comma, then another'
+                default: return 'Add content to the new note...'
+            }
         }
     },
 }

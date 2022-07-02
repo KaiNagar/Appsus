@@ -17,6 +17,16 @@ export const noteService = {
     togglePinned,
 }
 
+const colors = [
+    '#9400D3',
+    '#d0aaaa',
+    '#008080',
+    '#c96946',
+    '#A9A9A9',
+    '#ffa5a5',
+    '#fff',
+    '#f29164'
+]
 
 function query() {
     return storageService.query(NOTE_KEY)
@@ -36,8 +46,10 @@ function addNote(note) {
     const newNote = {
         type,
         info,
+        title: 'Title',
+        isPinned: false,
         style: {
-            backgroundColor: '#495057',
+            backgroundColor: colors[utilService.getRandomInt(0, colors.length)],
         },
     }
     return save(newNote)

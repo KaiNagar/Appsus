@@ -18,19 +18,12 @@ export default {
                 '#ffa5a5',
                 '#fff',
                 '#f29164'
-
-
             ]
         }
     },
-    created() {
-    },
-
     methods: {
         changeBgColor(color) {
             this.$emit('bg-color', color)
         }
     },
-    computed: {},
-    unmounted() { },
 };

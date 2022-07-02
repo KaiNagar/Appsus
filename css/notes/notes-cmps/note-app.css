@@ -30,7 +30,7 @@
     padding: 10px;
 }
 
-img {
+.note img {
     object-fit: cover;
     width: 85%;
     height: 100%;
