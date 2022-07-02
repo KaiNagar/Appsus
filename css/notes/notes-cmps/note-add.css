@@ -5,19 +5,17 @@
 }
 
 .add-note-form:hover {
-    background-color: rgba(253, 253, 253, 0.979);
+    background-color: white;
     transition: 0.4s;
 }
 
 .add-note-form {
     padding: 6px;
-    background-color: rgba(254, 252, 252, 0.427);
+    background-color: rgba(255, 255, 255, 0.172);
     border-radius: 10px;
     width: 35em;
     border: 1px solid rgb(82, 82, 82);
-
 }
-
 
 .add-note-form input {
     padding: 15px;

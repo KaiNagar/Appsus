@@ -8,18 +8,22 @@ export default {
         <section class="note-app">
             <add-note @newNote="addNewNote" />
 
-            <note-list v-if="pinnedNotes && pinnedNotes.length"
-            :notes="pinnedNotes" 
-            @removeNote="removeNote"
-            @changeBgColor="changeBgColor"
-            @pinnedNote="pinnedNote"
-              />
-            <note-list v-if="unPinnedNotes && unPinnedNotes.length"
-            :notes="unPinnedNotes" 
-            @removeNote="removeNote"
-            @changeBgColor="changeBgColor"
-            @pinnedNote="pinnedNote"
-              />
+            <div class="note-list-container">
+            <div class="pinned-line"><i class="fa-solid fa-thumbtack"></i></div>
+            
+                <note-list v-if="pinnedNotes && pinnedNotes.length"
+                :notes="pinnedNotes" 
+                @removeNote="removeNote"
+                @changeBgColor="changeBgColor"
+                @pinnedNote="pinnedNote"
+                  />
+                <note-list v-if="unPinnedNotes && unPinnedNotes.length"
+                :notes="unPinnedNotes" 
+                @removeNote="removeNote"
+                @changeBgColor="changeBgColor"
+                @pinnedNote="pinnedNote"
+                  />
+            </div>
             </section>
     </main>
 `,
@@ -28,28 +32,35 @@ export default {
         addNote,
     },
     name: 'app note',
+
     data() {
         return {
             notes: null,
         }
     },
+
     created() {
         this.loadNotes()
     },
+
     methods: {
         loadNotes() {
             noteService.query()
                 .then(notes => this.notes = notes)
         },
+
         addNewNote(newNote) {
             noteService.addNote(newNote).then(this.loadNotes)
         },
+
         pinnedNote(noteId) {
             noteService.togglePinned(noteId).then(this.loadNotes)
         },
+
         removeNote(noteId) {
             noteService.removeNote(noteId).then(this.loadNotes)
         },
+
         changeBgColor({ color, noteId }) {
             noteService.changeNoteBgc(color, noteId)
                 .then(this.loadNotes)
@@ -59,9 +70,10 @@ export default {
         pinnedNotes() {
             return this.notes && this.notes.filter(note => note.isPinned)
         },
+
         unPinnedNotes() {
             return this.notes && this.notes.filter(note => !note.isPinned)
         }
     },
-    unmounted() { },
+
 }

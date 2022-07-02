@@ -95,25 +95,14 @@
     },
     {
         "id": "n107",
-        "type": "note-todos",
-        "title": "Get my stuff together",
+        "type": "note-gif",
+        "title": "My Fillings",
         "isPinned": false,
         "info": {
-            "todos": [
-                {
-                    "isDone": false,
-                    "txt": "Driving liscence",
-                    "doneAt": null
-                },
-                {
-                    "isDone": false,
-                    "txt": "Coding power",
-                    "doneAt": 187111111
-                }
-            ]
+            "gifUrl": "imgs/gifs/hi.gif"
         },
         "style": {
-            "backgroundColor": "#f9dca5"
+            "backgroundColor": "#dbf4a6"
         }
     }
 ]

@@ -12,22 +12,23 @@ export default {
          @click="pinnedNote">
             <i class="fa-solid fa-thumbtack" 
             :style="{color:note.isPinned? 'orange':''}"></i>
-        </button>
+           </button>
             <button
                 @click="removeNote">
                 <i class="fa-solid fa-trash-can" ></i>
                 </button>
 
-                <a @click="showBgColor"
-                 class="color-palette-btn">
-                <i class="fa-solid fa-palette"></i>
-
-                <note-bg-color
-                v-if="isColor"
-                @bgColor="changeBgColor"
-                />
-                </a>
-            </section>
+                <button @click="showBgColor"
+                    class="color-palette-btn">
+                    <i class="fa-solid fa-palette"></i>
+                <span>
+                  <note-bg-color
+                  v-if="isColor"
+                  @bgColor="changeBgColor"
+                  />
+                </span>
+            </button>
+    </section>
 `,
     components: {
         noteBgColor,

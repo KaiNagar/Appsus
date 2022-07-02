@@ -11,7 +11,8 @@ export default {
     template: `
     <article :style="bgc">
         <div class="note-title">
-            <h3 v-if="!isEditTitle"  @click="onEditTitle">{{note.title}}</h3>
+            <h3 v-if="!isEditTitle" 
+             @click="onEditTitle">{{note.title}}</h3>
             <input v-else 
             ref="titleInput"
             type="text" 

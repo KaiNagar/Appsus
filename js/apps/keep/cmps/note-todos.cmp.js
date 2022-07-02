@@ -6,7 +6,7 @@ export default {
             <li v-for="(todo,idx) in info.todos">
               <div class="todo-content">
                 <input 
-                :checked="todo.isDone"
+                    :checked="todo.isDone"
                     @click="toggleIsDone(idx)"
                     id="checkbox"
                     type="checkbox"
@@ -22,13 +22,6 @@ export default {
 </ul>
 </section>
 `,
-    data() {
-        return {
-        }
-    },
-    created() {
-
-    },
     methods: {
         toggleIsDone(todoIdx) {
             const updatedInfo = { ...this.info }
@@ -37,6 +30,7 @@ export default {
             )
             this.$emit('update-note-info', updatedInfo)
         },
+
         updateTodoTxt(todoIdx, txt) {
             console.log(todoIdx, txt);
             const updatedInfo = { ...this.info }
@@ -46,12 +40,6 @@ export default {
             this.$emit('update-note-info', updatedInfo)
 
         }
+    }
 
-
-    },
-    computed: {
-
-
-    },
-    unmounted() { },
-};
+}

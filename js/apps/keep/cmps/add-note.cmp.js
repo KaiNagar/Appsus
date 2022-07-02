@@ -6,7 +6,7 @@ export default {
         <form @submit.prevent="createNote"
                 class="add-note-form">
                 <input ref="addNoteInput"
-                placeholder="Add Note..."
+                :placeholder="placeholder"
                 type="text"
                />
             <span id="text" 
@@ -17,23 +17,25 @@ export default {
                 @click="setNoteType('note-img')">
                 <i class="fa-solid fa-image"></i>
             </span>
-            <!-- <input ref="userImage" @click="setNoteType('note-img',$event)" type="file"> -->
+            <input ref="userImage" @click="setNoteType('note-img',$event)" type="file">
             <span id="todo" 
                 @click="setNoteType('note-todos')">
                 <i class="fa-solid fa-list"></i>
             </span>
-            <!-- <span @click="newNote.type='note-video'" id="video">video</span> -->
-            <!-- <button>Add note</button> -->
+            <span @click="newNote.type='note-video'" id="video">video</span>
+            <button>
+                <i class="fa-solid fa-check"></i>
+            </button>
         </form>
     </section>
 `,
     data() {
         return {
             newNote: {
-                type: 'note-txt',
+                type: '',
                 isPinned: false,
                 info: null,
-                backgroundColor: 'grey'
+                backgroundColor: 'white'
             },
         }
     },
@@ -42,15 +44,11 @@ export default {
         setNoteType(type) {
             let input = this.$refs.addNoteInput
             this.newNote.type = type
-
-            if (type === 'note-txt') input.placeholder = 'Enter text title'
-            if (type === 'note-img') input.placeholder = 'Add a image'
-            if (type === 'note-todos') input.placeholder = 'Enter title for your todos'
         },
 
         createNote() {
             let note = this.newNote
-            let value = this.$refs.addNoteInput.value
+            let noteType = this.newNote.type
 
             if (!value) return
             let title = value
@@ -77,6 +75,12 @@ export default {
             this.$emit('newNote', note)
         }
     },
-    computed: {},
-    unmounted() { },
+    computed: {
+        placeholder() {
+            const { type } = this.newNote
+            if (type === 'note-txt') return 'Enter text title'
+            if (type === 'note-img') return 'Add a image'
+            if (type === 'note-todos') return 'Enter title for your todos'
+        }
+    },
 }

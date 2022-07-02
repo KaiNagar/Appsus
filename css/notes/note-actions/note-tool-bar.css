@@ -2,7 +2,8 @@
     align-items: center;
     padding: 1em;
     bottom: 0.1em;
-    display: inline-flex;
+    display: flex;
+    justify-content: space-between;
 }
 
 .action-btns .fa-solid {

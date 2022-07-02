@@ -22,7 +22,7 @@ export default {
     methods: {},
     computed: {
         url() {
-            // return `https://www.youtube.com/embed/${this.info.videoId}`
+            return `https://www.youtube.com/embed/${this.info.videoId}`
         },
     },
     unmounted() { },

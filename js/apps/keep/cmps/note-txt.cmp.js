@@ -3,12 +3,15 @@ export default {
     props: ['info'],
     template: `
          <section class="note-body">
-                <input type="text"
+            <textarea class="txt-input" cols="5" rows="10"
+                type="text"
                 ref="updatedTxt"
                 @input="updateNote"
-             />
-        </section>
-`,
+                placeholder="Dont forget to...">
+                Save your thoughts, wherever you are
+            </textarea>
+            </section>
+            `,
     data() {
         return {
 

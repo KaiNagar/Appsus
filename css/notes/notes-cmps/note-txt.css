@@ -1,9 +1,8 @@
-/* todo */
-
-
-/* tool bar btns */
-
-/* color btn */
-
-
-/* add note */
+.txt-input {
+    height: 8em;
+    width: 10em;
+    background-color: transparent;
+    border: transparent;
+    resize: none;
+    font-size: 1.8em;
+}
