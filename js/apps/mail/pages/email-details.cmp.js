@@ -6,8 +6,14 @@ export default {
         <section v-if="email" class="email-details-full">
             <div class="details-info flex column">
                 <div class="expand-actions flex align-center space-between">
-                    <div class="labels">
-                        <span v-for="label in email.labels">{{label}}</span>
+                    <div class="labels flex">
+                        <div v-for="(label,idx) in email.labels" class="labels-container">
+                            <span class="label" 
+                            :class="setLabelStyle(label)">
+                                {{label}}
+                                <button @click="removeLabel(idx)">x</button>
+                            </span>
+                        </div>
                     </div>
                     <div>
                         <button @click="removeEmail">
@@ -16,11 +22,44 @@ export default {
                         <button @click="back" title="Back To List">
                             <img src="./imgs/email-icons/back.png" alt="Back icon">
                         </button>
+                        <button @click="labelsOpen=!labelsOpen" title="Add label">
+                            <img src="./imgs/email-icons/add.png" alt="">
+                        </button>
+                        <div class="label-list" v-if="labelsOpen">
+                            <span @click="addLabel('Critical')" 
+                            class="critical">
+                                Critical
+                            </span>
+                            <span @click="addLabel('Family')" 
+                            class="family">
+                                Family
+                            </span>
+                            <span @click="addLabel('Work')" 
+                            class="work">
+                                Work
+                            </span>
+                            <span @click="addLabel('Friends')" 
+                            class="friends">
+                                Friends
+                            </span>
+                            <span @click="addLabel('Spam')" 
+                            class="spam">
+                                Spam
+                            </span>
+                            <span @click="addLabel('Memories')" 
+                            class="memories">
+                                Memories
+                            </span>
+                            <span @click="addLabel('Romantic')" 
+                            class="romantic">
+                                Romantic
+                            </span>
+                        </div>
+
                     </div>
                 </div>
                 <div class="details-data flex column">
                     <span class="details-subject">{{email.subject}}</span>
-                    
                     <div class="formatted-data flex align-center">
                         <span class="userName">{{email.userName}}</span>
                         <div class="email-settings flex space-between">
@@ -30,9 +69,6 @@ export default {
                     </div>
                     <div class="details-body">{{email.body}}</div>
                 </div>
-                <!-- <button @click="getN"></button> -->
-                    <!-- <router-link class="next-email" :to="'/email/' + nextEmailId" title="Read Next Email">Next Email</router-link>
-                    <router-link class="prev-email" :to="'/email/' + prevEmailId" title="Read Prev Email">Prev Email</router-link> -->
             </div>
         </section>
     `,
@@ -43,6 +79,7 @@ export default {
             type: null,
             nextEmailId: null,
             prevEmailId: null,
+            labelsOpen:false,
         };
     },
 
@@ -76,6 +113,35 @@ export default {
         getPrevEmailId() {
             emailService.getPrevId(this.email)
         },
+
+        setLabelStyle(label) {
+            switch (label) {
+                case 'Critical':
+                    return 'critical';
+                case 'Family':
+                    return 'family';
+                case 'Work':
+                    return 'work';
+                case 'Friends':
+                    return 'friends'
+                case 'Spam':
+                    return 'spam'
+                case 'Memories':
+                    return 'memories';
+                case 'Romantic':
+                    return 'romantic'
+            }
+        },
+        removeLabel(labelIdx) {
+            this.email.labels.splice(labelIdx, 1)
+            emailService.updateEmail(this.type,this.email)
+        },
+
+        addLabel(label){
+            if(!this.email.labels) this.email.labels = []
+            this.email.labels.push(label)
+            emailService.updateEmail(this.type,this.email)
+        }
     },
 
     computed: {

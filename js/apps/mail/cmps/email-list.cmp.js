@@ -38,7 +38,7 @@ export default {
                                 Read
                                 <img src="./imgs/email-icons/sort.png" alt="Sort icon">
                             </td>
-                            <td>Labels</td>
+                            <td title="For more labels read full email" >Labels</td>
                             <td @click="sort('time')" 
                             title="Sort By Date" 
                             class="flex align-center">

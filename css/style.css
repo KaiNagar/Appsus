@@ -1,5 +1,6 @@
 @import './basic/base.css';
 @import './basic/helpers.css';
+@import './basic/labels.css';
 
 
 @import './books/cmps/book-list.css';

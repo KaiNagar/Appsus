@@ -84,3 +84,50 @@
     width: 500px;
     font-weight: bold;
 }
+
+
+/* labels */
+
+.details-info span.label{
+    border-radius: 1rem;
+    padding: 0px 5px;
+    margin: 0.2rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details-info span.label button{
+    background-color: transparent;
+    padding: 0;
+    justify-content: center;
+    
+}
+
+.label-list{
+    position: absolute;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 0.3rem;
+    border-radius: 0.8rem;
+}
+
+.label-list span{
+    margin: 0.1rem 0;
+    border-radius: 0.4rem;
+}
+.label-list span:hover{
+   background-color: rgba(4, 4, 4, 0.164);
+   cursor: pointer;
+}
+
+.details-info .expand-actions{
+    width: 96%;
+}
+
+.details-info .expand-actions .labels{
+    
+}

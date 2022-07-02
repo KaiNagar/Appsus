@@ -31,3 +31,36 @@
     cursor: pointer;
     color: gold;
 }
+
+
+/* labels */
+td button.add-label {
+    background-color: transparent;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+td button.add-label:hover {
+    background-color: grey;
+    border-radius: 50%;
+}
+
+td button.add-label img {
+    width: 20px;
+}
+
+td.label-action{
+    text-align: -webkit-center;
+}
+
+
+.label-preview{
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    padding: 0px 0.5rem;
+    text-align: center;
+}

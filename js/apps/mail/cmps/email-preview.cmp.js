@@ -22,6 +22,13 @@ export default {
                     <i v-if="!email.isRead" class="fa-regular fa-envelope"></i>
                     <i v-if="email.isRead"  class="fa-regular fa-envelope-open"></i>
                 </td>
+                <td class="label-preview" 
+                title="For more labels read full email" 
+                :class="setLabelStyle">
+                    <span v-if="email.labels">
+                        {{email.labels[0]}}
+                    </span>
+                </td>
                 <td :class="checkIfRead" class="time">{{formattedTime}}</td>
             </div>
             <hr v-if="expand">
@@ -107,6 +114,26 @@ export default {
         },
         formattedTime() {
             return emailService.formattedTime(this.email.sentAt)
+        },
+        setLabelStyle() {
+            if(!this.email.labels) return
+            const label = this.email.labels[0]
+            switch (label) {
+                case 'Critical':
+                    return 'critical';
+                case 'Family':
+                    return 'family';
+                case 'Work':
+                    return 'work';
+                case 'Friends':
+                    return 'friends'
+                case 'Spam':
+                    return 'spam'
+                case 'Memories':
+                    return 'memories';
+                case 'Romantic':
+                    return 'romantic'
+            }
         }
     },
 

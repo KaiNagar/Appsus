@@ -16,6 +16,9 @@
     td:nth-child(4){
         display: none;
     }
+    td:nth-child(6){
+        display: none;
+    }
     
 
    tr.titles td:nth-child(4){
