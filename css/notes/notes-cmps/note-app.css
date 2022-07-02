@@ -20,6 +20,7 @@
     border-radius: 1em;
     grid-template-rows: max-content 200px 1fr;
     box-shadow: 2px 5px 6px 0px #0000009e;
+    font-family: monospace;
 }
 
 .pinned-line {
@@ -41,21 +42,19 @@
 }
 
 .note-title {
-    font-family: monospace;
+    font-size: 1.5em;
     border-bottom: 1px solid rgba(171, 171, 171, 0.502);
 }
 
-.note-title input.title-input {
-    font-family: monospace;
+.note-title .title-input {
     align-items: center;
-    font-size: 1.5em;
 }
 
-.note-title input.title-input:hover {
+.note-title input:hover {
     border: 2px dashed gray;
 }
 
-.note-title input.title-input {
+.note-title input {
     background-color: transparent;
     border: transparent;
     font-family: monospace;
