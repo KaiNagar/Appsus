@@ -1,6 +1,8 @@
 .txt-area {
     background-color: transparent;
     border: 2px dashed transparent;
+    font-family: monospace;
+    font-size: 1.5em;
 }
 
 .txt-area:hover {
@@ -8,6 +10,7 @@
 }
 
 .todo-content {
+    font-family: monospace;
     padding: 0px;
     justify-content: center;
     align-items: center;
