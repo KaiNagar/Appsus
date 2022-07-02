@@ -2,13 +2,16 @@ import { emailService } from "../services/email-service.js";
 import { router } from "../../../router.js";
 
 export default {
-
     template: `
         <section v-if="email" class="email-details-full">
             <div class="details-info flex column">
                 <div class="expand-actions">
-                    <button @click="removeEmail"><img src="./imgs/email-icons/trash.png" alt="Trash icon"></button>
-                    <button @click="back" title="Back To List"><img src="./imgs/email-icons/back.png" alt="Back icon"></button>
+                    <button @click="removeEmail">
+                        <img src="./imgs/email-icons/trash.png" alt="Trash icon">
+                    </button>
+                    <button @click="back" title="Back To List">
+                        <img src="./imgs/email-icons/back.png" alt="Back icon">
+                    </button>
                 </div>
                 <div class="details-data flex column">
                     <span class="details-subject">{{email.subject}}</span>
@@ -26,12 +29,8 @@ export default {
                     <!-- <router-link class="next-email" :to="'/email/' + nextEmailId" title="Read Next Email">Next Email</router-link>
                     <router-link class="prev-email" :to="'/email/' + prevEmailId" title="Read Prev Email">Prev Email</router-link> -->
             </div>
-
-
         </section>
     `,
-
-    components: {},
 
     data() {
         return {
@@ -41,6 +40,7 @@ export default {
             prevEmailId: null,
         };
     },
+
     methods: {
         back() {
             this.$router.push('/email')
@@ -70,9 +70,9 @@ export default {
 
         getPrevEmailId() {
             emailService.getPrevId(this.email)
-
         },
     },
+
     computed: {
         emailFormat() {
             if (this.email.to) return `<${this.email.to}>`
@@ -81,7 +81,6 @@ export default {
         formattedTime() {
             return emailService.formattedTime(this.email.sentAt)
         }
-
     },
 
     created() {
@@ -92,7 +91,6 @@ export default {
                 if (this.email.to) this.type = 'sent'
                 else if (this.email.from) this.type = 'recived'
             })
-
     },
     // watch: {
     //     '$route.params.emailId': {
@@ -113,5 +111,4 @@ export default {
     //         immediate: true
     //     }
     // },
-    // unmounted() {},
 }

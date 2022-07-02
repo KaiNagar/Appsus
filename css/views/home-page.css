@@ -1,56 +1,81 @@
 /* .home-page {
     height: 90vh;
 } */
-.emails-img {
-    background-image: url('../../imgs/email-image.png');
-    background-repeat: no-repeat;
-    background-size:auto;
-    background-position: center;
-    height: 90vh;
-    background-color: green;
-}
-.notes-img {
-    height: 90vh;
-    background-color: rgb(209, 216, 25);
-
-}
-.books-img {
-    height: 90vh;
-    background-color: rgb(187, 19, 238);
-
-}
-
 .home-img {
-    background-image: url('https://www.visittheusa.com/sites/default/files/styles/16_9_1280x720/public/2017-07/561417b7ae9dacdedf3c6698e51f3af5.jpeg?h=9c2070a3&itok=K2xHqcNB');
+    background-image: url('https://images.pexels.com/photos/247600/pexels-photo-247600.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-attachment: fixed;
-    background-color: #323639;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 90vh;
-    /* position: absolute; */
-    width: 100%;
-    /* height: 85%; */
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.emails-img {
+    background-image: url('../../imgs/home-imgs/email-home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.notes-img {
+    background-image: url('../../imgs/home-imgs/notes-home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-h1,
-p {
-    /* text-shadow: 1px 6px 2px #323639; */
-
+.books-img {
+    background-image: url('../../imgs/home-imgs/books-home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.home-title h1 {
+
+.home-title h1,
+.app-title h1 {
     font-size: 2em;
-    margin: 0;
+    margin: 0px;
 }
 
 .home-title {
+    text-align: center;
+    font-size: 2em;
+    color: rgb(213, 214, 213);
+    padding: 2rem;
+    border-radius: 0.4rem;
 
+}
+
+.app-title {
     text-align: center;
     font-size: 2em;
     color: rgb(241, 237, 237);
+    background-color: rgba(128, 128, 128, 0.502);
+    padding: 1rem;
+    border-radius: 0.4rem;
+}
 
+.app-title:first-of-type {
+    margin-inline-end: 5rem;
+}
 
+.app-title:last-of-type {
+    margin-inline-start: 5rem;
+}
+
+.app-title:hover {
+    cursor: pointer;
 }

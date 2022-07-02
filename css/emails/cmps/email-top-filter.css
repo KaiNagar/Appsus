@@ -1,0 +1,25 @@
+.email-top-filter{
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.email-top-filter input {
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.206);
+    font-size: 1.3rem;
+    width: 94.5%;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    transition: all 0.5s;
+}
+
+.email-top-filter input:focus {
+    outline: none;
+    background-color: white;
+}
+
+.main-email-container {
+    width: 100%;
+}

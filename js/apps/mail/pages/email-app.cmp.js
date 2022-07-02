@@ -6,23 +6,26 @@ import sideFilter from "../cmps/email-side-filter.cmp.js"
 
 export default {
     template: `
-    <section v-if="emails" class="emails-app flex">
-
-        <side-filter :unRead="unReadCount" :percentage="percentage" @emailType="setType"/>
-        <div class="main-email-container flex column">
-            <top-filter @filtered="setFilter"/>
-            <email-list @updateCount="setCount" @sortEmails="setSort"   :emails="emailsToDisplay"/>
-        </div>
-        <router-view></router-view>
-        
-    </section>
+        <section v-if="emails" class="emails-app flex">
+            <side-filter :unRead="unReadCount" 
+            :percentage="percentage" 
+            @emailType="setType"/>
+            <div class="main-email-container flex column">
+                <top-filter @filtered="setFilter"/>
+                <email-list @updateCount="setCount"
+                @sortEmails="setSort"   
+                :emails="emailsToDisplay"/>
+            </div>
+            <router-view></router-view>
+        </section>
     `,
-    props: [],
+
     components: {
         emailList,
         topFilter,
         sideFilter
     },
+
     data() {
         return {
             emails: null,
@@ -35,6 +38,7 @@ export default {
             percentage: Math.round(this.unRedCount / this.allMail * 100)
         };
     },
+
     methods: {
         setFilter(filterBy) {
             this.filterBy = filterBy
@@ -89,6 +93,7 @@ export default {
             if (this.percentage < 0) this.percentage = 5
         },
     },
+
     computed: {
         emailsToDisplay() {
             if (!this.filterBy) {
@@ -100,6 +105,7 @@ export default {
                 regex.test(email.from) || regex.test(email.id) || regex.test(email.userName))
         }
     },
+
     created() {
         emailService.setEmails(this.sideFilter).then(emails => {
             this.emails = emails
@@ -114,5 +120,4 @@ export default {
                     this.percentage = Math.round(((this.allMail - this.unReadCount) / this.allMail) * 100)
                 })
     },
-    unmounted() { },
 };

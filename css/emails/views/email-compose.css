@@ -1,0 +1,95 @@
+.compose-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 11.6rem;
+    width: 550px;
+    height: 600px;
+    padding: 1rem;
+    transition: all 0.5s;
+}
+
+.compose-container button {
+    margin: 1rem;
+    background-color: #1a73e8;
+    color: whitesmoke;
+    border: 0;
+    padding: 0.7rem 1.5rem;
+    border-radius: 0.3rem;
+}
+
+.compose-container button:hover {
+    background-color: #5b96e2;
+    cursor: pointer;
+}
+
+.compose-container input {
+    padding: 0.5rem;
+    border: 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+    border-top: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.compose-container input:nth-child(2) {
+    border: 0;
+}
+
+.compose-container textarea {
+    resize: none;
+    height: 400px;
+    border: 0;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
+.compose-container h3 {
+    color: var(--clr-white);
+    font-weight: 400;
+    padding: 0.3rem;
+    font-size: 1.1rem;
+    margin-bottom: 0px;
+    margin-top: 0;
+}
+
+.compose-header {
+    background-color: rgb(71, 70, 70);
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    z-index: -100;
+}
+
+.compose-header:hover {
+    cursor: pointer;
+}
+
+.compose-header .exit-compose {
+    text-decoration: none;
+    color: whitesmoke;
+    margin-inline-end: 0.5rem;
+    width: 20px;
+    text-align: center;
+}
+
+.compose-header .exit-compose:hover {
+    cursor: pointer;
+    background-color: rgba(178, 190, 190, 0.40);
+}
+
+.minimaized:hover {
+    cursor: pointer;
+    background-color: rgba(178, 190, 190, 0.25);
+}
+
+.compose-actions {
+    width: 8%;
+    z-index: 100;
+}
+
+.compose-container form {
+    background-color: white;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}

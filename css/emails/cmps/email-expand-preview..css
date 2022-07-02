@@ -1,0 +1,51 @@
+.email-expand-preview {
+    width: 95%;
+    margin: auto;
+}
+
+.expand-actions button img {
+    width: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.expand-actions button {
+    border: 0;
+    background-color: grey;
+    margin: 0.2rem;
+    padding: 0.8rem;
+    border-radius: 50%;
+}
+
+.expand-actions button:hover {
+    background-color: rgba(128, 128, 128, 0.363);
+    cursor: pointer;
+}
+
+.expand-header span {
+    font-size: 2rem;
+}
+
+.userInfo {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.userMail {
+    color: grey;
+}
+
+.email-body-expand {
+    max-width: 90%;
+    margin: auto;
+    padding: 1rem;
+}
+
+.email-red {
+    background-color: rgba(128, 128, 128, 0.4);
+}
+
+.expand-actions {
+    text-align: right;
+    margin: 1rem;
+}
