@@ -1,0 +1,14 @@
+@media (min-width:950px){
+    .titles{
+        grid-template-columns: 6% 10.5% 25% 36% 7% 8% 6%;    
+    }
+    td:first-of-type{
+        padding-left: 0.2rem;
+    }
+    .email-side-filter-mobile{
+        display: none;
+    }
+    .screen{
+        display: none;
+    }
+}

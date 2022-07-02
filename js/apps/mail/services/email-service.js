@@ -30,6 +30,9 @@ const loggedInUser = {
     fullName: 'Izuku Midoriya'
 }
 
+//labels
+const labels = ['Critical', 'Family', 'Work', 'Friends', 'Spam', 'Memories', 'Romantic']
+
 //settting the app with the database if there is no data from th user to see
 _setData()
 
@@ -237,6 +240,7 @@ function setEmails(filterType) {
 }
 
 // Data Base
+// const labels = ['Critical', 'Family', 'Work', 'Friends', 'Spam', 'Memories', 'Romantic']
 const recivedEmailsData = [
     {
         id: utilService.makeId(),
@@ -249,7 +253,8 @@ const recivedEmailsData = [
         isStarred: true,
         sentAt: Date.now(),
         from: 'karenbigmac822@kmail.com',
-        userName: 'Karen'
+        userName: 'Karen',
+        labels:['Critical','Work']
     },
     {
         id: utilService.makeId(),
@@ -263,7 +268,8 @@ const recivedEmailsData = [
         isStarred: true,
         sentAt: Date.now() - 10000,
         from: 'drdan342@kmail.com',
-        userName: 'Dan'
+        userName: 'Dan',
+        labels:['Work','Spam']
     },
     {
         id: utilService.makeId(),
@@ -276,7 +282,8 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: Date.now() - (1000 * 60),
         from: 'aayesaa@kmail.com',
-        userName: 'Din'
+        userName: 'Din',
+        labels:['Family','Memories']
     },
     {
         id: utilService.makeId(),
@@ -289,7 +296,8 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: Date.now() - (1000 * 60 * 6),
         from: 'nirkpolake@kmail.com',
-        userName: 'Nir'
+        userName: 'Nir',
+        labels:['Romantic','Family']
     },
     {
         id: utilService.makeId(),
@@ -301,7 +309,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'FSguy@kmail.com',
-        userName: 'Aviv'
+        userName: 'Aviv',
+        labels:['Work','Spam']
+
     },
     {
         id: utilService.makeId(),
@@ -314,7 +324,9 @@ const recivedEmailsData = [
         isStarred: true,
         sentAt: 1656446147853,
         from: 'karenbigmac822@kmail.com',
-        userName: 'Karen'
+        userName: 'Karen',
+        labels:['Romantic','Family']
+
     },
     {
         id: utilService.makeId(),
@@ -328,7 +340,9 @@ const recivedEmailsData = [
         isStarred: true,
         sentAt: 1656492967853,
         from: 'drdan342@kmail.com',
-        userName: 'Dan'
+        userName: 'Dan',
+        labels:['Work','Spam']
+
     },
     {
         id: utilService.makeId(),
@@ -341,7 +355,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: Date.now() - (1000 * 60 * 6 * 20),
         from: 'aayesaa@kmail.com',
-        userName: 'Din'
+        userName: 'Din',
+        labels:['Work','Spam']
+
     },
     {
         id: utilService.makeId(),
@@ -354,7 +370,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'nirkpolake@kmail.com',
-        userName: 'Nir'
+        userName: 'Nir',
+        labels:['Friends','Family']
+
     },
     {
         id: utilService.makeId(),
@@ -366,7 +384,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'FSguy@kmail.com',
-        userName: 'Aviv'
+        userName: 'Aviv',
+        labels:['Critical','Work']
+
     },
     {
         id: utilService.makeId(),
@@ -379,7 +399,9 @@ const recivedEmailsData = [
         isStarred: true,
         sentAt: 1656446147853,
         from: 'karenbigmac822@kmail.com',
-        userName: 'Karen'
+        userName: 'Karen',
+        labels:['Critical','Work']
+
     },
     {
         id: utilService.makeId(),
@@ -393,7 +415,9 @@ const recivedEmailsData = [
         isStarred: true,
         sentAt: 1656492967853,
         from: 'drdan342@kmail.com',
-        userName: 'Dan'
+        userName: 'Dan',
+        labels:['Romantic','Family']
+
     },
     {
         id: utilService.makeId(),
@@ -406,7 +430,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1656304967853,
         from: 'aayesaa@kmail.com',
-        userName: 'Din'
+        userName: 'Din',
+        labels:['Critical','Work']
+
     },
     {
         id: utilService.makeId(),
@@ -419,7 +445,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'nirkpolake@kmail.com',
-        userName: 'Nir'
+        userName: 'Nir',
+        labels:['Critical','Work']
+
     },
     {
         id: utilService.makeId(),
@@ -431,7 +459,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'FSguy@kmail.com',
-        userName: 'Aviv'
+        userName: 'Aviv',
+        labels:['Romantic','Family']
+
     },
     {
         id: utilService.makeId(),
@@ -444,7 +474,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'nirkpolake@kmail.com',
-        userName: 'Nir'
+        userName: 'Nir',
+        labels:['Critical','Work']
+
     },
     {
         id: utilService.makeId(),
@@ -456,7 +488,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'FSguy@kmail.com',
-        userName: 'Aviv'
+        userName: 'Aviv',
+        labels:['Critical','Work']
+
     },
     {
         id: utilService.makeId(),
@@ -469,7 +503,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'nirkpolake@kmail.com',
-        userName: 'Nir'
+        userName: 'Nir',
+        labels:['Romantic','Family']
+
     },
     {
         id: utilService.makeId(),
@@ -481,7 +517,9 @@ const recivedEmailsData = [
         isStarred: false,
         sentAt: 1245402967853,
         from: 'FSguy@kmail.com',
-        userName: 'Aviv'
+        userName: 'Aviv',
+        labels:['Work','Spam']
+
     },
 ]
 
@@ -498,7 +536,7 @@ const sentEmailsData = [
         isStarred: false,
         sentAt: 1656443145853,
         to: 'tachoka@services.com',
-        userName: 'Tachoka@Help'
+        userName: 'Tachoka'
     },
     {
         id: utilService.makeId(),
@@ -512,7 +550,7 @@ const sentEmailsData = [
         isStarred: true,
         sentAt: 1656443137853,
         to: 'tachoka@services.com',
-        userName: 'Tachoka@Help'
+        userName: 'Tachoka'
     },
     {
         id: utilService.makeId(),
@@ -525,7 +563,7 @@ const sentEmailsData = [
         isStarred: false,
         sentAt: 1656442147853,
         to: 'tachoka@services.com',
-        userName: 'Tachoka@Help'
+        userName: 'Tachoka'
     },
     {
         id: utilService.makeId(),
@@ -538,7 +576,7 @@ const sentEmailsData = [
         isStarred: true,
         sentAt: 1656443077853,
         to: 'tachoka@services.com',
-        userName: 'Tachoka@Help'
+        userName: 'Tachoka'
     },
     {
         id: utilService.makeId(),
@@ -551,7 +589,7 @@ const sentEmailsData = [
         isStarred: true,
         sentAt: 1656443057853,
         to: 'tachoka@services.com',
-        userName: 'Tachoka@Help'
+        userName: 'Tachoka'
     },
 ]
 
@@ -590,7 +628,7 @@ const deletedEmailsData = [
         isStarred: false,
         sentAt: 1656433147853,
         from: 'tachoka@services.com',
-        userName: 'Tachoka@Help'
+        userName: 'Tachoka'
     },
     {
         id: utilService.makeId(),
@@ -602,6 +640,6 @@ const deletedEmailsData = [
         isStarred: false,
         sentAt: 1656440147853,
         from: 'tachoka@services.com',
-        userName: 'Tachoka@Help'
+        userName: 'Tachoka'
     },
 ]

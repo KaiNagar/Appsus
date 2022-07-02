@@ -52,7 +52,7 @@
     background-color: rgba(221, 222, 233, 0.414);
 }
 
-.unread-count{
+.unread-count {
     margin-left: 2rem;
     font-size: 1.2rem;
     font-weight: bold;
@@ -124,4 +124,22 @@
     100% {
         background-position: 50px 50px;
     }
+}
+
+
+
+.email-side-filter-mobile img {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    padding: 0.4rem;
+    cursor: pointer;
+}
+
+.email-side-filter-mobile {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background-color: rgb(114, 186, 241);
+    border-radius: 50%;
 }

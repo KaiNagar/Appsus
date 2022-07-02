@@ -54,9 +54,6 @@ export default {
                 }
             })
         },
-        readFullEmail() {
-            console.log(this.email.id);
-        }
     },
 
     computed: {

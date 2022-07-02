@@ -1,5 +1,5 @@
 .note-app {
-    background-image: url(/imgs/notesApp.avif);
+    background-image: url(/imgs/note-imgs/notesApp.avif);
     background-size: cover;
     background-repeat: no-repeat;
     box-shadow: inset 0 5px 9px rgb(0 0 0 / 20%);
@@ -41,21 +41,21 @@
 }
 
 .note-title {
+    font-family: monospace;
     border-bottom: 1px solid rgba(171, 171, 171, 0.502);
 }
 
-.note-title,
-input {
+.note-title input.title-input {
     font-family: monospace;
     align-items: center;
     font-size: 1.5em;
 }
 
-.note-title input:hover {
+.note-title input.title-input:hover {
     border: 2px dashed gray;
 }
 
-.note-title input {
+.note-title input.title-input {
     background-color: transparent;
     border: transparent;
     font-family: monospace;

@@ -7,7 +7,7 @@ import sideFilter from "../cmps/email-side-filter.cmp.js"
 export default {
     template: `
         <section v-if="emails" class="emails-app flex">
-            <side-filter :unRead="unReadCount" 
+            <side-filter ref="SideFilter" class="side-filter" :class="toggleShow" :unRead="unReadCount" 
             :percentage="percentage" 
             @emailType="setType"/>
             <div class="main-email-container flex column">
@@ -17,6 +17,10 @@ export default {
                 :emails="emailsToDisplay"/>
             </div>
             <router-view></router-view>
+            <div v-if="screen" @click="screen=false" class="screen"></div>
+            <div @click="openSideMenu" class="email-side-filter-mobile">
+                <img src="./imgs/email-icons/more.png" alt="More icon">
+            </div>
         </section>
     `,
 
@@ -28,6 +32,7 @@ export default {
 
     data() {
         return {
+            screen:false,
             emails: null,
             filterBy: null,
             sideFilter: 'inbox',
@@ -87,11 +92,15 @@ export default {
             })
         },
         setCount(diff) {
+            console.log(diff);
             if (diff) this.unReadCount--
             else this.unReadCount++
             this.percentage = Math.round(((this.allMail - this.unReadCount) / this.allMail) * 100)
             if (this.percentage < 0) this.percentage = 5
         },
+        openSideMenu(){
+            this.screen =  !this.screen
+        }
     },
 
     computed: {
@@ -103,6 +112,10 @@ export default {
             return this.emails.filter((email) => regex.test(email.to) ||
                 regex.test(email.body) || regex.test(email.subject) ||
                 regex.test(email.from) || regex.test(email.id) || regex.test(email.userName))
+        },
+        toggleShow(){
+            if(this.screen) return 'open'
+            else return ''
         }
     },
 

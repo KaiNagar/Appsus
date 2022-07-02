@@ -3,15 +3,16 @@ import { router } from "../../../router.js";
 export default {
     template: `
         <section class="email-side-filter">
-            <div @click="pushRouter" class="add-compose-action" title="New Email">
+            <div @click="pushRouter" ref="composeAction" 
+            class="add-compose-action" title="New Email">
                 <span class="plus"></span>
                 <span class="compose">Compose</span> 
             </div>
-            <div class="tabs-nav">
+            <div ref="tabsNav" class="tabs-nav">
                 <div @click="setType('inbox')" ref="inbox" class="tab inbox-tab">
                     <img class="icon" src="./imgs/email-icons/inbox.png">
                     Inbox
-                    <span class="unread-count">{{unRead}}</span>
+                    <span class="unread-count">{{(unRead>0) ? unRead:''}}</span>
                 </div>
                 <div @click="setType('starred')" ref="starred" class="tab stared-tab">
                     <img class="icon" src="./imgs/email-icons/starred.png">Starred
@@ -29,7 +30,7 @@ export default {
                     Trash
                 </div>
                 <div class="bar-container">
-                    <p>Unread emails:</p>
+                    <p>Read emails:</p>
                     <div class="prog-bar-border"></div>
                     <div :style="style" class="prog-bar">{{percentage}}%</div>
                 </div>
@@ -67,9 +68,9 @@ export default {
         console.log(this.style);
     },
 
-    watch:{
-        'percentage':{
-            handler(){
+    watch: {
+        'percentage': {
+            handler() {
                 this.style = {
                     width: this.percentage + '%',
                 }

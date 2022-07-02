@@ -37,7 +37,12 @@
 @import './views/home-page.css';
 
 @import './components/app-header.css';
+@import './components/modal-screen.css';
 
+
+@import '../js/apps/mail/css/mq/mq-mobile.css';
+@import '../js/apps/mail/css/mq/mq-tablet.css';
+@import '../js/apps/mail/css/mq/mq-desktop.css';
 
 :root {
     --clr-white: #fff;

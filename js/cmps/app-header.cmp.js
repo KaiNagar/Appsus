@@ -4,18 +4,62 @@ export default {
             <div>
                 <img :src="logo" alt="">
             </div>
-            <nav class="nav-bar">
-                <router-link to="/">Home</router-link>
-                <router-link to="/book">Books</router-link>
-                <router-link to="/about">About</router-link>
-                <router-link to="/email">Email</router-link>
-                <router-link to="/note">Notes</router-link>
-            </nav>
+            <button @click="openMenu"  
+            class="menu-btn">
+                <img src="imgs/apps-icons/menu-icon.png" 
+                title="Menu" alt="Menu icon">
+            </button>
+            <div ref="headerNav" class="nav-header flex column">
+                <button @click="goTo('/')">
+                    Home
+                    <img src="imgs/apps-icons/home-icon.png" 
+                    title="Go to home" alt="Home icon">
+                </button>
+                <button @click="goTo('/email')">
+                    Emails
+                    <img src="imgs/apps-icons/email-icon.png" 
+                    title="Go to emails" alt="Email icon">
+                </button>
+                <button @click="goTo('/note')">
+                    Notes
+                    <img src="imgs/apps-icons/notes-icon.png" 
+                    title="Go to notes" alt="Notes icon">
+                </button>
+                <button @click="goTo('/book')">
+                    Books
+                    <img src="imgs/apps-icons/books-icon.png" 
+                    title="Go to books" alt="Books icon">
+                </button>
+                <button @click="goTo('/about')">
+                    About
+                    <img src="imgs/apps-icons/about-icon.png" 
+                    title="Go to about" alt="About icon">
+                </button>
+            </div>
         </section>
     `,
+
     data() {
         return {
-            logo: 'https://images.squarespace-cdn.com/content/v1/5e98c7c222a00461fe372e41/1608690579484-5B596XZBUWJF9WAJ291R/bookshop-logo-dark-orig_1.png?format=1000w'
+            logo: '',
+            menuOpen: false,
         }
     },
+
+    methods: {
+        goTo(location) {
+            this.$router.push(location)
+            this.$refs.headerNav.style.top = '-100%'
+            this.menuOpen = !this.menuOpen        
+        },
+        
+        openMenu() {
+            this.menuOpen = !this.menuOpen
+            if (this.menuOpen) {
+                this.$refs.headerNav.style.top = '4.7rem'
+            } else {
+                this.$refs.headerNav.style.top = '-100%'
+            }
+        }
+    }
 }

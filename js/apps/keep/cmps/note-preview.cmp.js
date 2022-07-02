@@ -12,7 +12,7 @@ export default {
         <div class="note-title">
             <h3 v-show="!isEditTitle" 
             @click="onEditTitle">{{note.title}}</h3>
-            <input v-show="isEditTitle"
+            <input class="title-input" v-show="isEditTitle"
             ref="titleInput"
             type="text" 
             :value="note.title"

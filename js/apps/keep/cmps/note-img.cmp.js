@@ -4,7 +4,7 @@ export default {
     <section>
         <img v-if="info.url" :src="info.url" />
         <div v-else class="gif-img">
-            <img src="/imgs/gifs/boom.gif" alt="" />
+            <img src="/imgs/note-imgs/gifs/boom.gif" alt="" />
         </div>
     </section>
     `,

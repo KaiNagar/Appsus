@@ -5,13 +5,18 @@ export default {
     template: `
         <section v-if="email" class="email-details-full">
             <div class="details-info flex column">
-                <div class="expand-actions">
-                    <button @click="removeEmail">
-                        <img src="./imgs/email-icons/trash.png" alt="Trash icon">
-                    </button>
-                    <button @click="back" title="Back To List">
-                        <img src="./imgs/email-icons/back.png" alt="Back icon">
-                    </button>
+                <div class="expand-actions flex align-center space-between">
+                    <div class="labels">
+                        <span v-for="label in email.labels">{{label}}</span>
+                    </div>
+                    <div>
+                        <button @click="removeEmail">
+                            <img src="./imgs/email-icons/trash.png" alt="Trash icon">
+                        </button>
+                        <button @click="back" title="Back To List">
+                            <img src="./imgs/email-icons/back.png" alt="Back icon">
+                        </button>
+                    </div>
                 </div>
                 <div class="details-data flex column">
                     <span class="details-subject">{{email.subject}}</span>
@@ -104,8 +109,6 @@ export default {
     //                         console.log(nextEmailId);
     //                         this.nextEmailId = nextEmailId
     //                     })
-
-
     //             })
     //         },
     //         immediate: true
