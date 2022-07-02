@@ -45,9 +45,11 @@ export default {
     },
 
     methods: {
+        //setting filter by input support all kind of filtering
         setFilter(filterBy) {
             this.filterBy = filterBy
         },
+        // setting curr email type (sent inbox and so on)
         setType(type) {
             emailService.setEmails(type).then(emails => this.emails = emails)
         },
@@ -91,6 +93,7 @@ export default {
                 }
             })
         },
+        //setting count for unread emails
         setCount(diff) {
             console.log(diff);
             if (diff) this.unReadCount--
@@ -98,12 +101,14 @@ export default {
             this.percentage = Math.round(((this.allMail - this.unReadCount) / this.allMail) * 100)
             if (this.percentage < 0) this.percentage = 5
         },
+        //on mobile opening side menu
         openSideMenu(){
             this.screen =  !this.screen
         }
     },
 
     computed: {
+        // setting the emails to display
         emailsToDisplay() {
             if (!this.filterBy) {
                 return this.emails
@@ -113,6 +118,7 @@ export default {
                 regex.test(email.body) || regex.test(email.subject) ||
                 regex.test(email.from) || regex.test(email.id) || regex.test(email.userName))
         },
+        //toggle screen when in mobile
         toggleShow(){
             if(this.screen) return 'open'
             else return ''

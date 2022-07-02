@@ -53,12 +53,15 @@ export default {
     },
 
     methods: {
+        // sending new email to the sent emails
+        // if email is user mail it goes to inbox
         sendEmail() {
             console.log(this.newEmail);
             emailService.addEmail(this.newEmail)
             router.push('/email')
             clearInterval(this.draftInterval)
         },
+        //hiding the compose modal when clicked
         hideCompose() {
             if (this.isX) return
             this.isShow = !this.isShow
@@ -66,6 +69,7 @@ export default {
             if (!this.isShow) compose.style.bottom = '-550px'
             else compose.style.bottom = '1rem'
         },
+        //closing the compose modal
         exitCompose() {
             this.isX = true
             clearInterval(this.draftInterval)

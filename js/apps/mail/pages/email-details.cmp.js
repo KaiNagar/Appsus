@@ -84,9 +84,11 @@ export default {
     },
 
     methods: {
+        //back button to go back to the list of emails
         back() {
             this.$router.push('/email')
         },
+        //remocing an email + swal modal
         removeEmail() {
             Swal.fire({
                 title: 'Are you sure?',
@@ -109,11 +111,7 @@ export default {
                 }
             })
         },
-
-        getPrevEmailId() {
-            emailService.getPrevId(this.email)
-        },
-
+        // setting curr label background color
         setLabelStyle(label) {
             switch (label) {
                 case 'Critical':
@@ -132,11 +130,12 @@ export default {
                     return 'romantic'
             }
         },
+        //removing a label to curr email
         removeLabel(labelIdx) {
             this.email.labels.splice(labelIdx, 1)
             emailService.updateEmail(this.type,this.email)
         },
-
+        //adding a label to curr email
         addLabel(label){
             if(!this.email.labels) this.email.labels = []
             this.email.labels.push(label)
@@ -145,10 +144,12 @@ export default {
     },
 
     computed: {
+        //setting email format for page
         emailFormat() {
             if (this.email.to) return `<${this.email.to}>`
             else if (this.email.from) return `<${this.email.from}>`
         },
+        //setting time format for page
         formattedTime() {
             return emailService.formattedTime(this.email.sentAt)
         }
@@ -163,21 +164,4 @@ export default {
                 else if (this.email.from) this.type = 'recived'
             })
     },
-    // watch: {
-    //     '$route.params.emailId': {
-    //         handler() {
-    //             if (!this.$route.params.emailId) return
-    //             const id = this.$route.params.emailId
-    //             emailService.getEmailById(id).then(email => {
-    //                 this.email = email
-    //                 emailService.getNextId(email)
-    //                     .then(nextEmailId => {
-    //                         console.log(nextEmailId);
-    //                         this.nextEmailId = nextEmailId
-    //                     })
-    //             })
-    //         },
-    //         immediate: true
-    //     }
-    // },
 }

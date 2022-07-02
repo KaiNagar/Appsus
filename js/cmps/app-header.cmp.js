@@ -41,12 +41,13 @@ export default {
     },
 
     methods: {
+        //picking location to go on the app
         goTo(location) {
             this.$router.push(location)
             this.$refs.headerNav.style.top = '-100%'
             this.menuOpen = !this.menuOpen
         },
-
+        // toggling menu
         openMenu() {
             this.menuOpen = !this.menuOpen
             if (this.menuOpen) {

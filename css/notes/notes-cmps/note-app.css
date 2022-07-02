@@ -12,6 +12,7 @@
     flex-wrap: wrap;
     grid-gap: 20px;
     padding: 10px 20px;
+    justify-content: center;
 }
 
 .note {
