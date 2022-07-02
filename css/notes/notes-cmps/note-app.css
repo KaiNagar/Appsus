@@ -50,10 +50,6 @@
     align-items: center;
 }
 
-.note-title input:hover {
-    border: 2px dashed gray;
-}
-
 .note-title input {
     background-color: transparent;
     border: transparent;
@@ -66,4 +62,32 @@
     margin-inline-end: 0px;
     font-weight: bold;
     border: 2px dashed transparent;
+}
+
+.note-filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-filter input {
+    font-size: 20px;
+    border-radius: 10px;
+    width: 20em;
+    padding: 0.5em;
+    border: transparent;
+}
+
+.note-filter button:hover {
+    transform: scale(1.2);
+}
+
+.note-filter button {
+    margin-top: 10px;
+    background-color: transparent;
+    border: transparent;
+    font-size: 1.9rem;
+    cursor: pointer;
+    color: rgb(66, 66, 112);
 }

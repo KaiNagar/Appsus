@@ -1,8 +1,13 @@
+.txt-input:hover {
+    border: 2px dashed gray;
+
+}
+
 .txt-input {
     height: 8em;
     width: 10em;
     background-color: transparent;
-    border: transparent;
+    border: 1px solid transparent;
     resize: none;
     font-size: 1.8em;
 }
