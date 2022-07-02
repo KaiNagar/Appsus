@@ -1,7 +1,7 @@
 .compose-container {
     position: fixed;
-    bottom: 1rem;
-    left: 11.6rem;
+    bottom: 3rem;
+    left: 12.3rem;
     width: 550px;
     height: 600px;
     padding: 1rem;
@@ -37,6 +37,7 @@
     resize: none;
     height: 400px;
     border: 0;
+    font-size: 1.4rem;
 }
 
 textarea:focus,

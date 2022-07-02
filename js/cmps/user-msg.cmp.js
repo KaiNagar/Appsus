@@ -4,7 +4,6 @@ export default {
     template: `
         <section v-if="msg" class="user-msg" :class="msg.type">
             <p>{{msg.txt}}</p>  
-            <p>{{msg}}</p>          
         </section>
 `,
     data() {
