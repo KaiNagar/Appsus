@@ -18,6 +18,15 @@
     position: relative;
 }
 
+#checkbox:hover {
+    opacity: 1;
+}
+
+#checkbox {
+    cursor: pointer;
+    width: 20px;
+}
+
 .todo-content input {
     position: relative;
     padding: 10px;

@@ -73,7 +73,6 @@ function togglePinned(noteId) {
 function changeNoteBgc(color, noteId) {
     return get(noteId)
         .then(note => {
-            console.log({ note, noteId })
             note.style.backgroundColor = color
             return save(note)
         })
@@ -85,7 +84,6 @@ function _createNotes() {
         notes = notesData
         utilService.saveToStorage(NOTE_KEY, notes)
     }
-    console.log(notes);
     return notes
 }
 

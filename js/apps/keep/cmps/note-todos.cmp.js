@@ -32,7 +32,6 @@ export default {
         },
 
         updateTodoTxt(todoIdx, txt) {
-            console.log(todoIdx, txt);
             const updatedInfo = { ...this.info }
             updatedInfo.todos = updatedInfo.todos.map(
                 (todo, idx) => idx === todoIdx ? { ...todo, txt } : todo

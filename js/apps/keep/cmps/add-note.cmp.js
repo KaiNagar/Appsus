@@ -53,7 +53,6 @@ export default {
 
         createNote() {
             const { value } = this
-            console.log(value)
             const info = {}
 
             if (this.noteType === 'note-txt') {
