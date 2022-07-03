@@ -2,7 +2,7 @@ export default {
     template: `
         <section class="main-header">
             <div class="logo">
-            <img src="/imgs/3.png" alt="">
+            <img src="./imgs/3.png" alt="">
             </div>
             <button @click="openMenu"  
             class="menu-btn">
