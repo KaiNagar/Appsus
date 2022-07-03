@@ -46,7 +46,7 @@ function addNote(note) {
     const newNote = {
         type,
         info,
-        title: 'Title',
+        title: 'Enter title',
         isPinned: false,
         style: {
             backgroundColor: colors[utilService.getRandomInt(0, colors.length)],

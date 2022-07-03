@@ -32,6 +32,11 @@
                     "isDone": false,
                     "txt": "Push and Pull",
                     "doneAt": 187111111
+                },
+                {
+                    "isDone": false,
+                    "txt": "Add to do...",
+                    "doneAt": 187111111
                 }
             ]
         },
@@ -54,7 +59,7 @@
     {
         "id": "n104",
         "type": "note-img",
-        "title": "Give me title",
+        "title": "",
         "isPinned": false,
         "info": {
             "gifUrl": ""
@@ -88,6 +93,11 @@
                 {
                     "isDone": false,
                     "txt": "chocolate",
+                    "doneAt": 187111111
+                },
+                {
+                    "isDone": false,
+                    "txt": "Add to do...",
                     "doneAt": 187111111
                 }
             ]

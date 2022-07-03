@@ -6,7 +6,11 @@ export default {
             search
         <i class="fa-solid fa-magnifying-glass"></i>
     </button>
-        <input v-if="isInput" type="text" v-model="filterBy" @input="onFilterChange" />
+        <input v-if="isInput"
+         type="text"
+          v-model="filterBy"
+           @input="onFilterChange"
+           placeholder="Search your note" />
     </section>
 `,
     data() {
